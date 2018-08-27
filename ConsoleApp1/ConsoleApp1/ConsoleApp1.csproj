@@ -42,8 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="lectores\LectorColeccion.cs" />
+    <Compile Include="lectores\LectorStopwords.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scrubber.cs" />
+    <Compile Include="Vectorial.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
