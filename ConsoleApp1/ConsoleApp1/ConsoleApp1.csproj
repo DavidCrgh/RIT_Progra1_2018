@@ -50,6 +50,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scrubber.cs" />
+    <Compile Include="ServiciosRegex.cs" />
+    <Compile Include="Tokenizador.cs" />
     <Compile Include="Vectorial.cs" />
   </ItemGroup>
   <ItemGroup>

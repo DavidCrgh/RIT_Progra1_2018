@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using ConsoleApp1.lectores;
+
 namespace ConsoleApp1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Database database = new Database();
+            /*Database database = new Database();
 
             string text1 = "Costa Rica denominada oficialmente República de Costa Rica" +
                 " es una nación soberana organizada como una república presidencialista unitaria compuesta por 7 provincias";
@@ -47,7 +49,23 @@ namespace ConsoleApp1
 
             database.Set_diccionary();
 
-            Console.WriteLine(database.Get_lenght_dic().ToString());
+            Console.WriteLine(database.Get_lenght_dic().ToString());*/
+
+            string pathArchivo = Console.ReadLine();
+            string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);
+
+            contenido = ServiciosRegex.RemoverFormato_Comentarios(contenido);
+            contenido = ServiciosRegex.ReemplazarParametros(contenido);
+            contenido = Scrubber.Remove_acentos(contenido);
+
+            var listaTerminos = ServiciosRegex.TokenizarMatches(contenido);
+
+            Console.WriteLine(contenido);
+            Console.WriteLine("\nlistaTerminos=");
+            foreach(var t in listaTerminos)
+            {
+                Console.WriteLine(t);
+            }
 
             Console.ReadKey();
         }

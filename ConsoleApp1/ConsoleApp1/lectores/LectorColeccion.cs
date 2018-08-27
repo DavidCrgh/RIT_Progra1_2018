@@ -24,7 +24,7 @@ namespace ConsoleApp1.lectores
                 }
                 return coleccionArchivos;
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return new Dictionary<string, string>();
@@ -44,7 +44,7 @@ namespace ConsoleApp1.lectores
             }
         }
 
-        private static string ObtenerContenidoArchivo(string path)
+        public static string ObtenerContenidoArchivo(string path) //TODO cambiar a private
         {
             string contenidoArchivo;
             using (StreamReader streamReader = new StreamReader(path, Encoding.UTF8))
