@@ -39,16 +39,11 @@ namespace ConsoleApp1
 
             database.Set_terms(dic_docs);
 
-            foreach (var temp in database.Get_terms())
-            {
-                Console.WriteLine(temp);
-            }
-
-            Console.WriteLine("\n");
-
             database.Set_diccionary();
 
-            Console.WriteLine(database.Get_lenght_dic().ToString());
+            database.Set_words_per_doc();
+
+            //database.print();
 
             Console.ReadKey();
         }
