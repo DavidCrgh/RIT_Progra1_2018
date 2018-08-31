@@ -8,9 +8,9 @@ namespace ConsoleApp1.lectores
 {
     class LectorColeccion
     {
-        public static Dictionary<string, string> ObtenerColeccion(string sDir)
+        public static List<Document> ObtenerColeccion(string sDir)
         {
-            Dictionary<string, string> coleccionArchivos = new Dictionary<string, string>();
+            List<Document> coleccionArchivos = new List<Document>();
 
             try
             {
@@ -27,11 +27,11 @@ namespace ConsoleApp1.lectores
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new Dictionary<string, string>();
+                return new List<Document>;
             }
         }
 
-        private static void AgregarDocumento(string doc, Dictionary<string, string> coleccion)
+        private static void AgregarDocumento(string doc, List<Document> coleccion)
         {
             Regex expReg = new Regex(@".+\.[1-8]"); //nombre, punto, cualquier numero del 1 al 8 (ABCD.1 o WXYZ.8)
 
@@ -40,7 +40,8 @@ namespace ConsoleApp1.lectores
             if (expReg.IsMatch(nombreArchivo))
             {
                 string contenidoArchivo = ObtenerContenidoArchivo(doc);
-                coleccion.Add(nombreArchivo, contenidoArchivo);
+                Document documento = new Document(nombreArchivo, contenidoArchivo);
+                coleccion.Add(documento);
             }
         }
 

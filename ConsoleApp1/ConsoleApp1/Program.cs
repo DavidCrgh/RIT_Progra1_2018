@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ConsoleApp1.lectores;
 
-using ConsoleApp1.lectores;
-
 namespace ConsoleApp1
 {
     class Program
@@ -43,11 +41,11 @@ namespace ConsoleApp1
 
             database.Set_diccionary();
 
-<<<<<<< HEAD
+
             database.Set_words_per_doc();
 
             //database.print();
-=======
+
             Console.WriteLine(database.Get_lenght_dic().ToString());*/
 
             string pathArchivo = Console.ReadLine();
@@ -65,7 +63,6 @@ namespace ConsoleApp1
             {
                 Console.WriteLine(t);
             }
->>>>>>> b97e9cdbe4b03729d62ecc6a1e338ea25e109703
 
             Console.ReadKey();
         }

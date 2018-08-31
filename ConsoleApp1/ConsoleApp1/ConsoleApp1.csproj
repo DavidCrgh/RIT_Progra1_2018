@@ -45,18 +45,14 @@
     <Compile Include="Controller.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="Indexer.cs" />
     <Compile Include="lectores\LectorColeccion.cs" />
     <Compile Include="lectores\LectorStopwords.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scrubber.cs" />
-<<<<<<< HEAD
     <Compile Include="algoritmos\Vectorial.cs" />
-=======
     <Compile Include="ServiciosRegex.cs" />
-    <Compile Include="Tokenizador.cs" />
-    <Compile Include="Vectorial.cs" />
->>>>>>> b97e9cdbe4b03729d62ecc6a1e338ea25e109703
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

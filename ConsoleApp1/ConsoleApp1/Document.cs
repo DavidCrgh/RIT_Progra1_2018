@@ -30,7 +30,11 @@ namespace ConsoleApp1
 
         public void Set_words_document()
         {
-            this.words_document = this.text.Split(' ').ToList();
+            string contenido = this.text;
+            contenido = ServiciosRegex.RemoverFormato_Comentarios(contenido);
+            contenido = ServiciosRegex.ReemplazarParametros(contenido);
+            this.words_document = ServiciosRegex.TokenizarMatches(contenido);
+            //this.words_document = this.text.Split(' ').ToList();
         }
 
         public void Set_words(List<string> list)
