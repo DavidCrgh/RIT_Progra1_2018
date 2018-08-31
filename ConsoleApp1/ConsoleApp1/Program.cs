@@ -11,7 +11,8 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            /*Database database = new Database();
+            /*
+            Database database = new Database();
 
             string text1 = "Costa Rica denominada oficialmente República de Costa Rica" +
                 " es una nación soberana organizada como una república presidencialista unitaria compuesta por 7 provincias";
@@ -46,7 +47,7 @@ namespace ConsoleApp1
 
             //database.print();
 
-            Console.WriteLine(database.Get_lenght_dic().ToString());*/
+            Console.WriteLine(database.Get_lenght_dic().ToString());
 
             string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);
@@ -62,7 +63,13 @@ namespace ConsoleApp1
             foreach(var t in listaTerminos)
             {
                 Console.WriteLine(t);
-            }
+            }*/
+
+            string pathColeccion = "C:\\Users\\davva\\Desktop\\RIT_P1\\ColeccionesPrueba\\1\\man-es";
+            string pathStopwords = "";
+            string pathIndice = "";
+
+            Database terminos_coleccion = Indexer.Indexar(pathColeccion, pathStopwords, pathIndice);
 
             Console.ReadKey();
         }
