@@ -5,15 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using ConsoleApp1.lectores;
 
-using ConsoleApp1.lectores;
-
 namespace ConsoleApp1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            /*Database database = new Database();
+            Database database = new Database();
 
             string text1 = "Costa Rica denominada oficialmente República de Costa Rica" +
                 " es una nación soberana organizada como una república presidencialista unitaria compuesta por 7 provincias";
@@ -33,24 +31,21 @@ namespace ConsoleApp1
             doc2.Set_words(Scrubber.Remove_stopwords(doc2.Get_words_document()));
             doc3.Set_words(Scrubber.Remove_stopwords(doc3.Get_words_document()));
 
-            Dictionary<string, Document> dic_docs = new Dictionary<string, Document>();
+            List<Document> list_docs = new List<Document>();
 
-            dic_docs.Add(doc1.Get_name(), doc1);
-            dic_docs.Add(doc2.Get_name(), doc2);
-            dic_docs.Add(doc3.Get_name(), doc3);
+            list_docs.Add(doc1);
+            list_docs.Add(doc2);
+            list_docs.Add(doc3);
 
-            database.Set_terms(dic_docs);
+            database.Set_docs(list_docs);
+
+            database.Set_terms();
 
             database.Set_diccionary();
 
-<<<<<<< HEAD
             database.Set_words_per_doc();
 
-            //database.print();
-=======
-            Console.WriteLine(database.Get_lenght_dic().ToString());*/
-
-            string pathArchivo = Console.ReadLine();
+            /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);
 
             contenido = ServiciosRegex.RemoverFormato_Comentarios(contenido);
@@ -64,8 +59,7 @@ namespace ConsoleApp1
             foreach(var t in listaTerminos)
             {
                 Console.WriteLine(t);
-            }
->>>>>>> b97e9cdbe4b03729d62ecc6a1e338ea25e109703
+            }*/
 
             Console.ReadKey();
         }
