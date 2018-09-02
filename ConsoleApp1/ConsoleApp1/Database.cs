@@ -9,19 +9,27 @@ namespace ConsoleApp1
     class Database
     {
         private List<string> list_terms = new List<string>();
-        private Dictionary<string, Document> doc_info = new Dictionary<string, Document>();
+        private List<Document> doc_info = new List<Document>();
         private Dictionary<string, Dictionary<string, int>> words_per_doc = new Dictionary<string, Dictionary<string, int>>();
+        private List<Term> term_info = new List<Term>();
 
         public Database()
         {
         }
 
-        public void Set_terms(Dictionary<string, Document> docs)
+        public void Set_docs(List<Document> docs)
         {
             foreach (var temp in docs)
             {
-                this.doc_info.Add(temp.Key.ToString(), temp.Value);
-                foreach (var temp2 in temp.Value.Get_words_document())
+                this.doc_info.Add(temp);
+            }
+        }
+
+        public void Set_terms()
+        {
+            foreach (var temp in this.doc_info)
+            {
+                foreach (var temp2 in temp.Get_words_document())
                 {
                     if (!this.list_terms.Contains(temp2))
                     {
@@ -36,7 +44,7 @@ namespace ConsoleApp1
             return this.list_terms;
         }
 
-        public void Set_diccionary()
+        public Dictionary<string, int> Make_terms_dic()
         {
             Dictionary<string, int> init = new Dictionary<string, int>();
 
@@ -45,22 +53,50 @@ namespace ConsoleApp1
                 init.Add(temp2, 0);
             }
 
-            foreach (var temp in this.doc_info.Keys)
+            return init;
+        }
+
+        public void Set_diccionary()
+        {
+            
+            foreach (var temp in this.doc_info)
             {
-                this.words_per_doc.Add(temp, init);
+                this.words_per_doc.Add(temp.Get_name(),this.Make_terms_dic());
             }
         }
 
         public void Set_words_per_doc()
         {
-            foreach (var temp in this.doc_info.Keys)
+            foreach (var temp in this.doc_info)
             {
-                foreach (var temp2 in this.doc_info[temp].Get_words_document())
+                foreach (var temp2 in temp.Get_words_document())
                 {
-                    this.words_per_doc[temp][temp2] += 1;
-                    //Console.WriteLine(temp + " " + temp2 + " " + this.words_per_doc[temp][temp2]);
+                    this.words_per_doc[temp.Get_name()][temp2] ++;
                 }
             }
+        }
+
+        public void Get_appearances_words_per_docs()
+        {
+            int appearances = 0;
+            foreach (var temp in this.list_terms)
+            {
+                foreach (var word in this.words_per_doc.Values)
+                {
+                    if (word[temp] != 0)
+                    {
+                        appearances ++;
+                    }
+                }
+                this.Add_terms_to_list(temp, appearances);
+                appearances = 0;
+            }
+        }
+
+        public void Add_terms_to_list(string word, int appearances)
+        {
+            Term term = new Term(word, appearances);
+            this.term_info.Add(term);
         }
 
         public void print()
@@ -72,6 +108,29 @@ namespace ConsoleApp1
                 {
                     Console.WriteLine(temp2.Key + ": " + temp2.Value.ToString());
                 }
+            }
+        }
+
+        public void print2()
+        {
+            foreach (var temp in this.words_per_doc)
+            {
+                Console.WriteLine(temp.Key);
+                foreach (var temp2 in temp.Value)
+                {
+                    if (temp2.Value != 0)
+                    {
+                        Console.WriteLine("\t" + temp2.Key + "\t: " + "\t" + temp2.Value.ToString());
+                    }
+                }
+            }
+        }
+
+        public void print3()
+        {
+            foreach (var temp in this.term_info)
+            {
+                Console.WriteLine(temp.Get_word() + ": " + temp.Get_appearances().ToString());
             }
         }
     }

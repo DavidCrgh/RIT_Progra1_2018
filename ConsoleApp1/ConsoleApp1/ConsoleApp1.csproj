@@ -53,6 +53,8 @@
     <Compile Include="Scrubber.cs" />
     <Compile Include="algoritmos\Vectorial.cs" />
     <Compile Include="ServiciosRegex.cs" />
+    <Compile Include="Term.cs" />
+    <Compile Include="Tokenizador.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

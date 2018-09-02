@@ -11,7 +11,6 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            /*
             Database database = new Database();
 
             string text1 = "Costa Rica denominada oficialmente República de Costa Rica" +
@@ -32,13 +31,15 @@ namespace ConsoleApp1
             doc2.Set_words(Scrubber.Remove_stopwords(doc2.Get_words_document()));
             doc3.Set_words(Scrubber.Remove_stopwords(doc3.Get_words_document()));
 
-            Dictionary<string, Document> dic_docs = new Dictionary<string, Document>();
+            List<Document> list_docs = new List<Document>();
 
-            dic_docs.Add(doc1.Get_name(), doc1);
-            dic_docs.Add(doc2.Get_name(), doc2);
-            dic_docs.Add(doc3.Get_name(), doc3);
+            list_docs.Add(doc1);
+            list_docs.Add(doc2);
+            list_docs.Add(doc3);
 
-            database.Set_terms(dic_docs);
+            database.Set_docs(list_docs);
+
+            database.Set_terms();
 
             database.Set_diccionary();
 
@@ -49,7 +50,7 @@ namespace ConsoleApp1
 
             Console.WriteLine(database.Get_lenght_dic().ToString());
 
-            string pathArchivo = Console.ReadLine();
+            /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);
 
             contenido = ServiciosRegex.RemoverFormato_Comentarios(contenido);
