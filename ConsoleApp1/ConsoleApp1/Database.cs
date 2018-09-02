@@ -71,9 +71,32 @@ namespace ConsoleApp1
             {
                 foreach (var temp2 in temp.Get_words_document())
                 {
-                    this.words_per_doc[temp.Get_name()][temp2] += 1;
+                    this.words_per_doc[temp.Get_name()][temp2] ++;
                 }
             }
+        }
+
+        public void Get_appearances_words_per_docs()
+        {
+            int appearances = 0;
+            foreach (var temp in this.list_terms)
+            {
+                foreach (var word in this.words_per_doc.Values)
+                {
+                    if (word[temp] != 0)
+                    {
+                        appearances ++;
+                    }
+                }
+                this.Add_terms_to_list(temp, appearances);
+                appearances = 0;
+            }
+        }
+
+        public void Add_terms_to_list(string word, int appearances)
+        {
+            Term term = new Term(word, appearances);
+            this.term_info.Add(term);
         }
 
         public void print()
@@ -100,6 +123,14 @@ namespace ConsoleApp1
                         Console.WriteLine("\t" + temp2.Key + "\t: " + "\t" + temp2.Value.ToString());
                     }
                 }
+            }
+        }
+
+        public void print3()
+        {
+            foreach (var temp in this.term_info)
+            {
+                Console.WriteLine(temp.Get_word() + ": " + temp.Get_appearances().ToString());
             }
         }
     }
