@@ -47,6 +47,8 @@ namespace ConsoleApp1
 
             database.Get_appearances_words_per_docs();
 
+            database.print3();
+
             /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);
 

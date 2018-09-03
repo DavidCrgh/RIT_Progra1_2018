@@ -11,7 +11,6 @@ namespace ConsoleApp1
         private List<string> list_terms = new List<string>();
         private List<Document> doc_info = new List<Document>();
         private Dictionary<string, Dictionary<string, int>> words_per_doc = new Dictionary<string, Dictionary<string, int>>();
-        private List<Term> term_info = new List<Term>();
 
         public Database()
         {
@@ -63,6 +62,8 @@ namespace ConsoleApp1
             {
                 this.words_per_doc.Add(temp.Get_name(),this.Make_terms_dic());
             }
+
+            this.words_per_doc.Add("appearances", this.Make_terms_dic());
         }
 
         public void Set_words_per_doc()
@@ -88,15 +89,9 @@ namespace ConsoleApp1
                         appearances ++;
                     }
                 }
-                this.Add_terms_to_list(temp, appearances);
+                this.words_per_doc["appearances"][temp] = appearances;
                 appearances = 0;
             }
-        }
-
-        public void Add_terms_to_list(string word, int appearances)
-        {
-            Term term = new Term(word, appearances);
-            this.term_info.Add(term);
         }
 
         public void print()
@@ -128,9 +123,9 @@ namespace ConsoleApp1
 
         public void print3()
         {
-            foreach (var temp in this.term_info)
+            foreach (var temp in this.words_per_doc["appearances"])
             {
-                Console.WriteLine(temp.Get_word() + ": " + temp.Get_appearances().ToString());
+                Console.WriteLine("\t" + temp.Key + "\t: " + "\t" + temp.Value.ToString());
             }
         }
     }
