@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using ConsoleApp1.lectores;
+using ConsoleApp1.algoritmos;
 
 namespace ConsoleApp1
 {
@@ -11,7 +13,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Database database = new Database();
+            /*Database database = new Database();
 
             string text1 = "Costa Rica denominada oficialmente República de Costa Rica" +
                 " es una nación soberana organizada como una república presidencialista unitaria compuesta por 7 provincias";
@@ -71,6 +73,11 @@ namespace ConsoleApp1
             string pathIndice = "";
 
             Database terminos_coleccion = Indexer.Indexar(pathColeccion, pathStopwords, pathIndice);
+
+            Okapi_BM25 bm25 = new Okapi_BM25(terminos_coleccion);
+            bm25.Calcular_avgdl();
+
+            int freq = bm25.Calcular_F_qi_D("caracteres", "console_codes.4");
 
             Console.ReadKey();
         }

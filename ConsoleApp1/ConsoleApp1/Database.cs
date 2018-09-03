@@ -44,6 +44,16 @@ namespace ConsoleApp1
             return this.list_terms;
         }
 
+        public List<Document> Get_doc_info()
+        {
+            return this.doc_info;
+        }
+
+        public Dictionary<string, Dictionary<string, int>> Get_words_per_doc()
+        {
+            return words_per_doc;
+        }
+
         public Dictionary<string, int> Make_terms_dic()
         {
             Dictionary<string, int> init = new Dictionary<string, int>();
