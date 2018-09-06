@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="algoritmos\Okapi_BM25.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="Indexer.cs" />
     <Compile Include="lectores\LectorColeccion.cs" />
     <Compile Include="lectores\LectorStopwords.cs" />
     <Compile Include="Program.cs" />
@@ -52,7 +54,7 @@
     <Compile Include="Scrubber.cs" />
     <Compile Include="algoritmos\Vectorial.cs" />
     <Compile Include="ServiciosRegex.cs" />
-    <Compile Include="Tokenizador.cs" />
+    <Compile Include="Term.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

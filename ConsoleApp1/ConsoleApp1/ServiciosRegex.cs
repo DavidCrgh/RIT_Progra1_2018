@@ -11,7 +11,7 @@ namespace ConsoleApp1
     {
         public static string RemoverFormato_Comentarios(string texto)
         {
-            string patronRegex = @"^(\.\\"".*|\.[a-zA-Z]+)";
+            string patronRegex = @"(^(\.\\"".*|\.[a-zA-Z]+)|\\f[a-zA-Z])";
             return Regex.Replace(texto, patronRegex, "", RegexOptions.Multiline); //Cambia los comentarios e inicios de linea especiales por vacio
         }
 
@@ -23,7 +23,7 @@ namespace ConsoleApp1
 
         public static List<string> TokenizarMatches(string texto)
         {
-            string patronRegex = @"(@?[a-zA-Z\d]+|\d+(\.\d+)*)";
+            string patronRegex = @"((\d+(\.\d+)*)|@?[a-zA-Z\d]+)";
             MatchCollection matchList = Regex.Matches(texto, patronRegex, RegexOptions.Multiline);
             var listaTerminos = matchList.Cast<Match>().Select(match => match.Value).ToList();
 

@@ -8,30 +8,31 @@ namespace ConsoleApp1.lectores
 {
     class LectorColeccion
     {
-        public static Dictionary<string, string> ObtenerColeccion(string sDir)
+        public static List<Document> ObtenerColeccion(string sDir)
         {
-            Dictionary<string, string> coleccionArchivos = new Dictionary<string, string>();
+            List<Document> coleccionArchivos = new List<Document>();
 
             try
             {
-                foreach (string dir in Directory.GetDirectories(sDir))
+                foreach (string directorio in Directory.GetDirectories(sDir))
                 {
-                    foreach (string archivo in Directory.GetFiles(dir))
+                    foreach (string archivo in Directory.GetFiles(directorio))
                     {
                         AgregarDocumento(archivo, coleccionArchivos);
                     }
-                    ObtenerColeccion(dir);
+                    ObtenerColeccion(directorio);
                 }
+
                 return coleccionArchivos;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new Dictionary<string, string>();
+                return new List<Document>();
             }
         }
 
-        private static void AgregarDocumento(string doc, Dictionary<string, string> coleccion)
+        private static void AgregarDocumento(string doc, List<Document> coleccion)
         {
             Regex expReg = new Regex(@".+\.[1-8]"); //nombre, punto, cualquier numero del 1 al 8 (ABCD.1 o WXYZ.8)
 
@@ -40,19 +41,23 @@ namespace ConsoleApp1.lectores
             if (expReg.IsMatch(nombreArchivo))
             {
                 string contenidoArchivo = ObtenerContenidoArchivo(doc);
-                coleccion.Add(nombreArchivo, contenidoArchivo);
+                contenidoArchivo = Scrubber.Limpiar_Raw_Contenido(contenidoArchivo);
+                Document documento = new Document(nombreArchivo, contenidoArchivo);
+
+                documento.Set_words_document();
+                documento.Set_words(Scrubber.Remove_stopwords(documento.Get_words_document()));
+
+                coleccion.Add(documento);
             }
         }
 
-        public static string ObtenerContenidoArchivo(string path) //TODO cambiar a private
+        private static string ObtenerContenidoArchivo(string path)
         {
             string contenidoArchivo;
             using (StreamReader streamReader = new StreamReader(path, Encoding.UTF8))
             {
                 contenidoArchivo = streamReader.ReadToEnd();
             }
-
-            // TODO: insertar codigo que "limpia" contenido del archivo (quitar stopwords, comentarios, comandos, etc.)
 
             return contenidoArchivo;
         }
