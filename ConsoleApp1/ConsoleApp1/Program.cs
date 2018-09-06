@@ -52,6 +52,8 @@ namespace ConsoleApp1
 
             Console.WriteLine(database.Get_lenght_dic().ToString());
 
+            database.print3();
+
             /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);
 
