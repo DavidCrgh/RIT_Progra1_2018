@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleApp1.lectores;
+using ConsoleApp1.algoritmos;
 
 namespace ConsoleApp1
 {
@@ -12,6 +13,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Database database = new Database();
+            Vectorial vectorial = new Vectorial();
 
             string text1 = "Costa Rica denominada oficialmente República de Costa Rica" +
                 " es una nación soberana organizada como una república presidencialista unitaria compuesta por 7 provincias";
@@ -47,7 +49,9 @@ namespace ConsoleApp1
 
             database.Get_appearances_words_per_docs();
 
-            database.print3();
+            vectorial.Set_dic(database.Get_dic_docs_word());
+
+            vectorial.algorithm();
 
             /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);

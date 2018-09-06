@@ -10,7 +10,7 @@ namespace ConsoleApp1
     {
         private List<string> list_terms = new List<string>();
         private List<Document> doc_info = new List<Document>();
-        private Dictionary<string, Dictionary<string, int>> words_per_doc = new Dictionary<string, Dictionary<string, int>>();
+        private Dictionary<string, Dictionary<string, double>> words_per_doc = new Dictionary<string, Dictionary<string, double>>();
 
         public Database()
         {
@@ -43,9 +43,9 @@ namespace ConsoleApp1
             return this.list_terms;
         }
 
-        public Dictionary<string, int> Make_terms_dic()
+        public Dictionary<string, double> Make_terms_dic()
         {
-            Dictionary<string, int> init = new Dictionary<string, int>();
+            Dictionary<string, double> init = new Dictionary<string, double>();
 
             foreach (var temp2 in this.list_terms)
             {
@@ -92,6 +92,11 @@ namespace ConsoleApp1
                 this.words_per_doc["appearances"][temp] = appearances;
                 appearances = 0;
             }
+        }
+
+        public Dictionary<string, Dictionary<string, double>> Get_dic_docs_word()
+        {
+            return this.words_per_doc;
         }
 
         public void print()
