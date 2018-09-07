@@ -13,7 +13,8 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            /*Database database = new Database();
+            Database database = new Database();
+            Vectorial vectorial = new Vectorial();
 
             string text1 = "Costa Rica denominada oficialmente República de Costa Rica" +
                 " es una nación soberana organizada como una república presidencialista unitaria compuesta por 7 provincias";
@@ -50,9 +51,9 @@ namespace ConsoleApp1
 
             //database.print();
 
-            Console.WriteLine(database.Get_lenght_dic().ToString());
+            vectorial.Set_dic(database.Get_dic_docs_word());
 
-            database.print3();
+            vectorial.algorithm();
 
             /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo_Raw(pathArchivo);
