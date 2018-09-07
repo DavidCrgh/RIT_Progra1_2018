@@ -51,5 +51,10 @@ namespace ConsoleApp1
         {
             return this.words_document;
         }
+
+        public string Get_path()
+        {
+            return this.path;
+        }
     }
 }

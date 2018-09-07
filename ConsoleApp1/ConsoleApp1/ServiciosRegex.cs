@@ -36,21 +36,30 @@ namespace ConsoleApp1
             string patronEspacios = @"(\s{2,}|\n)";
             string patron200_Caracteres = @".{1,200}";
 
-            // Cortar a partir de .SH DESCRIPCION
-            string descripcion = Regex.Match(texto, patronDescripcion).Value;
-            // Quitar formatos
-            descripcion = RemoverFormato_Comentarios(descripcion);
-            // Reemplazar parametros por @
-            descripcion = ReemplazarParametros(descripcion);
-            // Reemplazar multiples espacios y cambios de linea por uno solo
-            descripcion = Regex.Replace(
-                descripcion, 
-                patronEspacios, 
-                " ", 
-                RegexOptions.Multiline);
-            // Cortar max. 200 chars
-            descripcion = Regex.Match(descripcion, patron200_Caracteres).Value;
+            // Buscar si hay descripcion
+            Match regex_match = Regex.Match(texto, patronDescripcion);
+            string descripcion = "";
 
+            if (regex_match.Success)
+            {
+                descripcion = regex_match.Value;
+                // Quitar formatos
+                descripcion = RemoverFormato_Comentarios(descripcion);
+                // Reemplazar parametros por @
+                descripcion = ReemplazarParametros(descripcion);
+                // Reemplazar multiples espacios y cambios de linea por uno solo
+                descripcion = Regex.Replace(
+                    descripcion,
+                    patronEspacios,
+                    " ",
+                    RegexOptions.Multiline);
+                // Cortar max. 200 chars
+                descripcion = Regex.Match(descripcion, patron200_Caracteres).Value;
+            }
+            else
+            {
+                descripcion = "Sin descripción.";
+            }
             
             return descripcion;
         }

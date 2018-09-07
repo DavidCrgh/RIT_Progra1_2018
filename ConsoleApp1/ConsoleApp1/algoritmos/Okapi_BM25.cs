@@ -11,16 +11,14 @@ namespace ConsoleApp1.algoritmos
         private Database indice;
         private Dictionary<string, int> doc_lengths; // lista de |D|'s, sirve para calcular avgdl
         private double avgdl; // promedio de |D|'s
-        private double k; // parametro de funcion de similitud
-        private double b; // parametro de funcion de similitud
+        private const double K = 1.2; // parametro de funcion de similitud (valor default)
+        private const double B = 0.75; // parametro de funcion de similitud (valor default)
 
         public Okapi_BM25(Database indice)
         {
             this.indice = indice;
             doc_lengths = new Dictionary<string, int>();
             avgdl = 0.0;
-            k = 1.2; // valor default segun especificacion
-            b = 0.75; // valor default segun especificacion
         }
 
         public void CrearEscalafonBM25()
@@ -35,7 +33,10 @@ namespace ConsoleApp1.algoritmos
 
                 foreach (string qi in terms_consulta)
                 {
-                    double sim_D_Q = Calcular_sim_D_Q(doc_name, qi);
+                    if (Validar_Termino_IDF(qi))
+                    {
+                        double sim_D_Q = Calcular_sim_D_Q(doc_name, qi);
+                    }
                 }
             }
         }
@@ -45,13 +46,13 @@ namespace ConsoleApp1.algoritmos
          */
         public double Calcular_sim_D_Q(string doc, string qi)
         {
-            int frecuencia_qi = Calcular_F_qi_D(qi, doc);
-            int doc_length = doc_lengths[doc];
+            double frecuencia_qi = Calcular_F_qi_D(qi, doc);
+            double doc_length = doc_lengths[doc];
 
             double dl_entre_avgdl = doc_length / avgdl;
 
-            double numerador = frecuencia_qi * (k + 1);
-            double denominador = frecuencia_qi + k * (1 - b + b * dl_entre_avgdl);
+            double numerador = frecuencia_qi * (K + 1);
+            double denominador = frecuencia_qi + K * (1 - B + B * dl_entre_avgdl);
 
             double IDF_qi = Calcular_IDF_qi(qi);
 
@@ -106,8 +107,10 @@ namespace ConsoleApp1.algoritmos
          */
         private double Calcular_IDF_qi(string termino)
         {
-            int N = indice.Get_doc_info().Count;
-            int n_qi = 0; //TODO obtener n_qi de term_info en indice.
+            double N = indice.Get_doc_info().Count;
+            double n_qi = indice.Get_dic_appearances_words()[termino]; 
+
+            //TODO: si un termino aparece en mas de la mitad de los documentos se debe eliminar
 
             double numerador_log = N - n_qi + 0.5;
             double denominador_log = n_qi + 0.5;
@@ -115,6 +118,14 @@ namespace ConsoleApp1.algoritmos
             double idf_qi = Math.Log(numerador_log / denominador_log, 10); // log base 10
 
             return 0.0;
+        }
+
+        private bool Validar_Termino_IDF(string termino)
+        {
+            double N = indice.Get_doc_info().Count;
+            double n_qi = indice.Get_dic_appearances_words()[termino];
+
+            return (N/2) > n_qi;
         }
 
     }
