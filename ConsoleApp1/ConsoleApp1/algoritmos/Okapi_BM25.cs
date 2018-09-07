@@ -64,7 +64,7 @@ namespace ConsoleApp1.algoritmos
          */
         public int Calcular_F_qi_D(string termino, string documento) //TODO: pasar a private
         {
-            return indice.Get_words_per_doc()[documento][termino];
+            return indice.Get_dic_docs_word()[documento][termino].Get_appearance();
         }
 
         /**
@@ -91,11 +91,11 @@ namespace ConsoleApp1.algoritmos
         private int Calcular_doc_length(string documento)
         {
             int doc_length = 0;
-            Dictionary<string, int> doc_terms = indice.Get_words_per_doc()[documento];
+            Dictionary<string, Term> doc_terms = indice.Get_dic_docs_word()[documento];
 
-            foreach(KeyValuePair<string, int> entry in doc_terms)
+            foreach(KeyValuePair<string, Term> entry in doc_terms)
             {
-                doc_length += entry.Value;
+                doc_length += entry.Value.Get_appearance();
             }
 
             return doc_length;
