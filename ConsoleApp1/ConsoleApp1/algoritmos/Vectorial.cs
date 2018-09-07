@@ -9,7 +9,7 @@ namespace ConsoleApp1.algoritmos
     class Vectorial
     {
         private Dictionary<string, Dictionary<string, Term>> dic_words = new Dictionary<string, Dictionary<string, Term>>();
-        private Dictionary<string, Dictionary<String, int>> appearances = new Dictionary<string, Dictionary<string, int>>();
+        private Dictionary<string, int> appearances = new Dictionary<string, int>();
         private int quantity_docs = 0;
 
         public Vectorial()
@@ -27,7 +27,7 @@ namespace ConsoleApp1.algoritmos
             this.Set_quantity_docs();
         }
 
-        public void Set_dic_appearances(Dictionary<string, Dictionary<string, int>> dic)
+        public void Set_dic_appearances(Dictionary<string, int> dic)
         {
             this.appearances = dic;
         }
@@ -54,7 +54,7 @@ namespace ConsoleApp1.algoritmos
 
         public double Calculate_N_ni(string word)
         {            
-            double num = (double)this.quantity_docs / (double)this.appearances["appearances"][word];
+            double num = (double)this.quantity_docs / (double)this.appearances[word];
             double value = Math.Log(num, 2);
             return value;
         }
