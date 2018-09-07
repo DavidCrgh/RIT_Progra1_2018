@@ -40,9 +40,9 @@ namespace ConsoleApp1.lectores
 
             if (expReg.IsMatch(nombreArchivo))
             {
-                string contenidoArchivo = ObtenerContenidoArchivo(doc);
-                contenidoArchivo = Scrubber.Limpiar_Raw_Contenido(contenidoArchivo);
-                Document documento = new Document(nombreArchivo, contenidoArchivo);
+                string contenidoArchivo = ObtenerContenidoArchivo_Raw(doc);
+                contenidoArchivo = Scrubber.Limpiar_Contenido_Raw(contenidoArchivo);
+                Document documento = new Document(nombreArchivo, contenidoArchivo, doc);
 
                 documento.Set_words_document();
                 documento.Set_words(Scrubber.Remove_stopwords(documento.Get_words_document()));
@@ -51,7 +51,7 @@ namespace ConsoleApp1.lectores
             }
         }
 
-        private static string ObtenerContenidoArchivo(string path)
+        public static string ObtenerContenidoArchivo_Raw(string path)
         {
             string contenidoArchivo;
             using (StreamReader streamReader = new StreamReader(path, Encoding.UTF8))

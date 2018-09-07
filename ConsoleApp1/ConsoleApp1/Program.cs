@@ -55,7 +55,7 @@ namespace ConsoleApp1
             database.print3();
 
             /*string pathArchivo = Console.ReadLine();
-            string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);
+            string contenido = LectorColeccion.ObtenerContenidoArchivo_Raw(pathArchivo);
 
             contenido = ServiciosRegex.RemoverFormato_Comentarios(contenido);
             contenido = ServiciosRegex.ReemplazarParametros(contenido);

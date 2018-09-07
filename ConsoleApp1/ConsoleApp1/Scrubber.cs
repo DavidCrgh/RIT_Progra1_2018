@@ -31,7 +31,7 @@ namespace ConsoleApp1
             return words;
         }
 
-        public static string Limpiar_Raw_Contenido(string contenido)
+        public static string Limpiar_Contenido_Raw(string contenido)
         {
             string texto_limpio = contenido.ToLowerInvariant();
             texto_limpio = Remove_acentos(texto_limpio);

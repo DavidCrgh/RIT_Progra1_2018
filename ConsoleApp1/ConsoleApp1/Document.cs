@@ -11,11 +11,13 @@ namespace ConsoleApp1
         private string name = "";
         private string text = "";
         private List<string> words_document = new List<string>();
+        private string path = "";
 
-        public Document(string n, string t)
+        public Document(string n, string t, string p)
         {
             this.name = n;
             this.text = t;
+            this.path = p;
         }
 
         public string Get_name()

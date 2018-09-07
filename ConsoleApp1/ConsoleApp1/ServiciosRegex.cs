@@ -29,5 +29,30 @@ namespace ConsoleApp1
 
             return listaTerminos;
         }
+
+        public static string Extraer_Descripcion(string texto)
+        {
+            string patronDescripcion = @"\.SH DESCRIPCI.N(.|\s)*";
+            string patronEspacios = @"(\s{2,}|\n)";
+            string patron200_Caracteres = @".{1,200}";
+
+            // Cortar a partir de .SH DESCRIPCION
+            string descripcion = Regex.Match(texto, patronDescripcion).Value;
+            // Quitar formatos
+            descripcion = RemoverFormato_Comentarios(descripcion);
+            // Reemplazar parametros por @
+            descripcion = ReemplazarParametros(descripcion);
+            // Reemplazar multiples espacios y cambios de linea por uno solo
+            descripcion = Regex.Replace(
+                descripcion, 
+                patronEspacios, 
+                " ", 
+                RegexOptions.Multiline);
+            // Cortar max. 200 chars
+            descripcion = Regex.Match(descripcion, patron200_Caracteres).Value;
+
+            
+            return descripcion;
+        }
     }
 }

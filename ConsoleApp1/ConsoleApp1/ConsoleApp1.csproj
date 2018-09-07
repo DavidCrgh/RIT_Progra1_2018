@@ -46,6 +46,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="escritores\EscritorHTML.cs" />
     <Compile Include="Indexer.cs" />
     <Compile Include="lectores\LectorColeccion.cs" />
     <Compile Include="lectores\LectorStopwords.cs" />
