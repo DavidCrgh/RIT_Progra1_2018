@@ -9,7 +9,9 @@ namespace ConsoleApp1
     class Database
     {
         private List<string> list_terms = new List<string>();
+        private List<Query> list_queries = new List<Query>();
         private List<Document> doc_info = new List<Document>();
+        private Dictionary<string, Dictionary<string, Term>> query = new Dictionary<string, Dictionary<string, Term>>();
         private Dictionary<string, Dictionary<string, Term>> words_per_doc = new Dictionary<string, Dictionary<string, Term>>();
         private Dictionary<string, Dictionary<String, int>> appearances_words = new Dictionary<string, Dictionary<string, int>>();
 
