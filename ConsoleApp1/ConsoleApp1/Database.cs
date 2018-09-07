@@ -38,6 +38,11 @@ namespace ConsoleApp1
             }
         }
 
+        public List<Document> Get_doc_info()
+        {
+            return this.doc_info;
+        }
+
         public List<string> Get_terms()
         {
             return this.list_terms;

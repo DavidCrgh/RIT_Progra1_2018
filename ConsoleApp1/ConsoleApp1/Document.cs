@@ -13,6 +13,12 @@ namespace ConsoleApp1
         private List<string> words_document = new List<string>();
         private string path = "";
 
+        public Document(string name, string text)
+        {
+            this.name = name;
+            this.text = text;
+        }
+
         public Document(string n, string t, string p)
         {
             this.name = n;
