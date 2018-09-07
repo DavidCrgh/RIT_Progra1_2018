@@ -57,6 +57,8 @@ namespace ConsoleApp1
 
             vectorial.algorithm();
 
+            vectorial.print();
+
             string query_text = Console.ReadLine();
 
             Query query = new Query("query",query_text.ToLower());
@@ -64,7 +66,6 @@ namespace ConsoleApp1
             query.Set_words_document();
 
             query.Set_words(Scrubber.Remove_stopwords(query.Get_words_document()));
-
 
 
             /*string pathArchivo = Console.ReadLine();
