@@ -9,8 +9,11 @@ namespace ConsoleApp1
     class Database
     {
         private List<string> list_terms = new List<string>();
+        private List<Query> list_queries = new List<Query>();
         private List<Document> doc_info = new List<Document>();
-        private Dictionary<string, Dictionary<string, double>> words_per_doc = new Dictionary<string, Dictionary<string, double>>();
+        private Dictionary<string, Dictionary<string, Term>> query = new Dictionary<string, Dictionary<string, Term>>();
+        private Dictionary<string, Dictionary<string, Term>> words_per_doc = new Dictionary<string, Dictionary<string, Term>>();
+        private Dictionary<string, Dictionary<String, int>> appearances_words = new Dictionary<string, Dictionary<string, int>>();
 
         public Database()
         {
@@ -48,15 +51,26 @@ namespace ConsoleApp1
             return this.list_terms;
         }
 
-        public Dictionary<string, double> Make_terms_dic()
+        public Dictionary<string, Term> Make_terms_dic()
         {
-            Dictionary<string, double> init = new Dictionary<string, double>();
+            Dictionary<string, Term> init = new Dictionary<string, Term>();
+
+            foreach (var temp2 in this.list_terms)
+            {
+                init.Add(temp2, new Term(0));
+            }
+
+            return init;
+        }
+
+        public Dictionary<string, int> Make_appearances_dic()
+        {
+            Dictionary<string, int> init = new Dictionary<string, int>();
 
             foreach (var temp2 in this.list_terms)
             {
                 init.Add(temp2, 0);
             }
-
             return init;
         }
 
@@ -68,7 +82,7 @@ namespace ConsoleApp1
                 this.words_per_doc.Add(temp.Get_name(),this.Make_terms_dic());
             }
 
-            this.words_per_doc.Add("appearances", this.Make_terms_dic());
+            this.appearances_words.Add("appearances", this.Make_appearances_dic());
         }
 
         public void Set_words_per_doc()
@@ -77,7 +91,7 @@ namespace ConsoleApp1
             {
                 foreach (var temp2 in temp.Get_words_document())
                 {
-                    this.words_per_doc[temp.Get_name()][temp2] ++;
+                    this.words_per_doc[temp.Get_name()][temp2].Set_appearances();
                 }
             }
         }
@@ -89,19 +103,25 @@ namespace ConsoleApp1
             {
                 foreach (var word in this.words_per_doc.Values)
                 {
-                    if (word[temp] != 0)
+                    if (word[temp].Get_appearance() != 0)
                     {
                         appearances ++;
                     }
                 }
-                this.words_per_doc["appearances"][temp] = appearances;
+
+                this.appearances_words["appearances"][temp] = appearances;
                 appearances = 0;
             }
         }
 
-        public Dictionary<string, Dictionary<string, double>> Get_dic_docs_word()
+        public Dictionary<string, Dictionary<string, Term>> Get_dic_docs_word()
         {
             return this.words_per_doc;
+        }
+
+        public Dictionary<string, Dictionary<string, int>> Get_dic_appearances_words()
+        {
+            return this.appearances_words;
         }
 
         public void print()
@@ -111,7 +131,7 @@ namespace ConsoleApp1
                 Console.WriteLine(temp.Key);
                 foreach (var temp2 in temp.Value)
                 {
-                    Console.WriteLine(temp2.Key + ": " + temp2.Value.ToString());
+                    Console.WriteLine(temp2.Key + ": " + temp2.Value.Get_appearance());
                 }
             }
         }
@@ -123,9 +143,9 @@ namespace ConsoleApp1
                 Console.WriteLine(temp.Key);
                 foreach (var temp2 in temp.Value)
                 {
-                    if (temp2.Value != 0)
+                    if (temp2.Value.Get_appearance() != 0)
                     {
-                        Console.WriteLine("\t" + temp2.Key + "\t: " + "\t" + temp2.Value.ToString());
+                        Console.WriteLine("\t" + temp2.Key + "\t: " + "\t" + temp2.Value.Get_appearance());
                     }
                 }
             }
@@ -133,7 +153,7 @@ namespace ConsoleApp1
 
         public void print3()
         {
-            foreach (var temp in this.words_per_doc["appearances"])
+            foreach (var temp in this.appearances_words["appearances"])
             {
                 Console.WriteLine("\t" + temp.Key + "\t: " + "\t" + temp.Value.ToString());
             }
