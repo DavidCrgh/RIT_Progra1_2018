@@ -51,7 +51,11 @@ namespace ConsoleApp1
 
             vectorial.Set_dic(database.Get_dic_docs_word());
 
+            vectorial.Set_dic_appearances(database.Get_dic_appearances_words());
+
             vectorial.algorithm();
+
+            vectorial.print();
 
             /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);

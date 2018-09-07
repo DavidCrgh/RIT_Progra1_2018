@@ -8,50 +8,68 @@ namespace ConsoleApp1.algoritmos
 {
     class Vectorial
     {
-        private Dictionary<string, Dictionary<string, double>> dic_words = new Dictionary<string, Dictionary<string, double>>();
-        private Dictionary<string, Dictionary<string, double>> appearances = new Dictionary<string, Dictionary<string, double>>();
+        private Dictionary<string, Dictionary<string, Term>> dic_words = new Dictionary<string, Dictionary<string, Term>>();
+        private Dictionary<string, Dictionary<String, int>> appearances = new Dictionary<string, Dictionary<string, int>>();
         private int quantity_docs = 0;
 
         public Vectorial()
         {
         }
 
-        public void Set_dic(Dictionary<string, Dictionary<string, double>> dic)
+        public void Set_quantity_docs()
         {
-            foreach (var temp in dic)
-            {
-                this.dic_words.Add(temp.Key, temp.Value);
-            }
-            this.appearances.Add("appearances", this.dic_words["appearances"]);
-            this.dic_words.Remove("appearances");
-            this.quantity_docs = this.dic_words.Count();
+            this.quantity_docs = this.dic_words.Count;
+        }
+
+        public void Set_dic(Dictionary<string, Dictionary<string, Term>> dic)
+        {
+            this.dic_words = dic;
+            this.Set_quantity_docs();
+        }
+
+        public void Set_dic_appearances(Dictionary<string, Dictionary<string, int>> dic)
+        {
+            this.appearances = dic;
         }
 
         public void algorithm()
         {
-            foreach (var temp in this.dic_words.Keys)
+            foreach (var temp in this.dic_words.Values)
             {
-                Console.WriteLine(temp);
-                foreach (var word in this.dic_words[temp].Keys)
+                foreach (var word in temp.Keys)
                 {
-                    if (this.dic_words[temp][word] != 0)
+                    if (temp[word].Get_appearance() != 0)
                     {
-                        //this.dic_words[temp][word] = 1;
-                        //(1 + Math.Log(temp[word], 2)) * Math.Log((this.quantity_docs / this.appearances["appearances"][word]), 2)
-                        Console.WriteLine(word + ": " + this.dic_words[temp][word]);
+                        temp[word].Set_vectorial(this.Calculate_weigth(temp[word]) * this.Calculate_N_ni(word));   
                     }
                 }
             }
         }
 
+        public double Calculate_weigth(Term word)
+        {
+            double value = (double)1 + Math.Log(word.Get_appearance(), 2);
+            return value;
+        }
+
+        public double Calculate_N_ni(string word)
+        {            
+            double num = (double)this.quantity_docs / (double)this.appearances["appearances"][word];
+            double value = Math.Log(num, 2);
+            return value;
+        }
+
         public void print()
         {
-            foreach (var temp in this.dic_words)
+            foreach (var temp in this.dic_words.Keys)
             {
-                Console.WriteLine(temp.Key);
-                foreach (var temp2 in temp.Value)
+                Console.WriteLine(temp);
+                foreach (var temp2 in this.dic_words[temp])
                 {
-                    Console.WriteLine(temp2.Key + ": " + temp2.Value.ToString());
+                    if(temp2.Value.Get_vectorial() != 0)
+                    {
+                        Console.WriteLine(temp2.Key + ": " + temp2.Value.Get_vectorial());
+                    }
                 }
             }
         }
