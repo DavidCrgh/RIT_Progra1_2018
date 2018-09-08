@@ -39,7 +39,6 @@ namespace ConsoleApp1
         public void Set_words_document()
         {
             this.words_document = ServiciosRegex.TokenizarMatches(this.text);
-            //this.words_document = this.text.Split(' ').ToList();
         }
 
         public void Set_words(List<string> list)
