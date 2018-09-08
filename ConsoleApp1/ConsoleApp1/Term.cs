@@ -10,7 +10,7 @@ namespace ConsoleApp1
     {
         private int appearances = 0;
         private double weigth_vectorial = 0;
-        private double weigth_bm25 = 0;
+        private double idf_bm25 = 0;
 
         public Term(int num)
         {
@@ -29,7 +29,7 @@ namespace ConsoleApp1
 
         public void Set_bm25(double num)
         {
-            this.weigth_bm25 = num;
+            this.idf_bm25 = num;
         }
 
         public int Get_appearance()
@@ -44,7 +44,7 @@ namespace ConsoleApp1
 
         public double Get_bm25()
         {
-            return this.weigth_bm25;
+            return this.idf_bm25;
         }
     }
 }

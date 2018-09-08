@@ -49,7 +49,9 @@
     <Compile Include="escritores\EscritorEscalafon.cs" />
     <Compile Include="escritores\EscritorIndice.cs" />
     <Compile Include="Indexer.cs" />
+    <Compile Include="Inspector.cs" />
     <Compile Include="lectores\LectorColeccion.cs" />
+    <Compile Include="lectores\LectorIndice.cs" />
     <Compile Include="lectores\LectorStopwords.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

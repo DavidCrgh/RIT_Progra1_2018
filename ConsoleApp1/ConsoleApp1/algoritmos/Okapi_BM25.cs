@@ -63,6 +63,8 @@ namespace ConsoleApp1.algoritmos
 
             double IDF_qi = Calcular_IDF_qi(qi);
 
+            Guardar_IDF(IDF_qi, doc, qi);
+
             return IDF_qi * (numerador / denominador);
         }
 
@@ -125,12 +127,23 @@ namespace ConsoleApp1.algoritmos
             return idf_qi;
         }
 
+        /**
+         * Validar_Termino_IDF: verificar si un termino aparece en mas de la mitad de los documentos
+         */
         private bool Validar_Termino_IDF(string termino)
         {
             double N = indice.Get_doc_info().Count;
             double n_qi = indice.Get_dic_appearances_words()[termino];
 
             return (N/2) > n_qi;
+        }
+
+        /**
+         * Guardar_IDF: guarda el IDF del termino en el indice
+         */
+        private void Guardar_IDF(double idf, string doc, string term)
+        {
+            indice.Get_dic_docs_word()[doc][term].Set_bm25(idf);
         }
 
     }
