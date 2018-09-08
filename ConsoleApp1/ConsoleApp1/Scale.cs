@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
+    [Serializable]
     class Scale
     {
         private Dictionary<string, double> scale = new Dictionary<string, double>();
 
         public Scale()
         {
+        }
+
+        public Dictionary<string, double> Get_scale()
+        {
+            return this.scale;
         }
         
         public void Add_scale(string doc, double value)
@@ -24,7 +30,20 @@ namespace ConsoleApp1
             this.scale.Clear();
         }
 
-        public void print_Scale()
+        public void Sort()
+        {
+            Dictionary<string, double> sorted_scale = new Dictionary<string, double>();
+            var sorter = from entry in this.scale orderby entry.Value descending select entry;
+
+            foreach (var temp in sorter)
+            {
+                sorted_scale.Add(temp.Key, temp.Value);
+            }
+
+            this.scale = sorted_scale;
+        }
+
+        public void print_Scale() //TODO: Quitar
         {
             int pos = 1;
 
@@ -36,7 +55,7 @@ namespace ConsoleApp1
             }
         }
 
-        public void print_2()
+        public void print_2() //TODO: Quitar
         {
             List<string> relevantes = new List<string> { "chgrp.1",
                 "chmod.1",
