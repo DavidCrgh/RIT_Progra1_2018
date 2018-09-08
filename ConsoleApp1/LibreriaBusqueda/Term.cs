@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda
 {
-    class Term
+    public class Term
     {
         private int appearances = 0;
         private double idf_bm25 = 0;

@@ -7,7 +7,7 @@ using LibreriaBusqueda.lectores;
 
 namespace LibreriaBusqueda.escritores
 {
-    class EscritorEscalafon
+    public class EscritorEscalafon
     {
         private List<Document> Documentos { set; get; }
         private Scale escalafon { set; get; }

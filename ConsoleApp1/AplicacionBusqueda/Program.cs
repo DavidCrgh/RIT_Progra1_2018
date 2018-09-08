@@ -1,18 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-using LibreriaBusqueda.lectores;
-using LibreriaBusqueda.escritores;
+using LibreriaBusqueda;
 using LibreriaBusqueda.algoritmos;
+using LibreriaBusqueda.escritores;
 
-namespace LibreriaBusqueda
+namespace AplicacionBusqueda
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
         {
             string pathColeccion = "C:\\Users\\User\\Downloads\\Tarea programada 1\\man-es";
             string pathStopwords = "";
@@ -39,7 +43,9 @@ namespace LibreriaBusqueda
             escritor.Escribir_Texto(pathEscalafonTexto);
             escritor.Escribir_HTML(pathEscalafonHTML);
 
-            Console.ReadKey();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
     }
 }

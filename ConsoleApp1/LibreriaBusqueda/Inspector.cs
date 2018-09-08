@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda
 {
-    class Inspector
+    public class Inspector
     {
         private Database indice;
 

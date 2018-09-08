@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda.algoritmos
 {
-    class Okapi_BM25
+    public class Okapi_BM25
     {
         private Database indice;
         private Dictionary<string, int> doc_lengths; // lista de |D|'s, sirve para calcular avgdl

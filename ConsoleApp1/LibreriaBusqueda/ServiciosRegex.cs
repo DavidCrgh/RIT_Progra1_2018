@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda
 {
-    class ServiciosRegex
+    public class ServiciosRegex
     {
         public static string RemoverFormato_Comentarios(string texto)
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LibreriaBusqueda
 {
-    class Scrubber
+    public class Scrubber
     {
         //"C:\\Users\\davva\\Desktop\\RIT_P1\\stopwords"
         //private static List<string> stopwords = LectorStopwords.ObtenerStopwords(PATH_STOPWORDS); 

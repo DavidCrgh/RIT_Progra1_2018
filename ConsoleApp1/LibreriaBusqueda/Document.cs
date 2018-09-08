@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda
 {
-    class Document
+    public class Document
     {
         private string name = "";
         private string text = "";

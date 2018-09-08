@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LibreriaBusqueda
 {
     [Serializable]
-    class Database
+    public class Database
     {
         private Query query;
         private List<string> list_terms = new List<string>();

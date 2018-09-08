@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LibreriaBusqueda
 {
     [Serializable]
-    class Scale
+    public class Scale
     {
         private Dictionary<string, double> scale = new Dictionary<string, double>();
 

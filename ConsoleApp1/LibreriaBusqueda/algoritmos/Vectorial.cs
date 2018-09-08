@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda.algoritmos
 {
-    class Vectorial
+    public class Vectorial
     {
         private Dictionary<string, Dictionary<string, Term>> dic_words = new Dictionary<string, Dictionary<string, Term>>();
         private Dictionary<string, double> word_yardstick = new Dictionary<string, double>();

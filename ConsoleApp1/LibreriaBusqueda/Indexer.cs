@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda
 {
-    class Indexer
+    public class Indexer
     {
         public static Database IndexarColeccion(string pathColeccion, string pathStopwords, string pathIndice)
         {

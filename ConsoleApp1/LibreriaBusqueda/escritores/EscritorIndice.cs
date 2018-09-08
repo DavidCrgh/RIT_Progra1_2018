@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda.escritores
 {
-    class EscritorIndice
+    public class EscritorIndice
     {
         public static void Escribir_Indice(string path, Database indice)
         {
