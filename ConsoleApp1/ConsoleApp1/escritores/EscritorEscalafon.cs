@@ -27,8 +27,8 @@ namespace ConsoleApp1.escritores
 
             foreach(KeyValuePair<string, double> entry in escalafon.Get_scale())
             {
-                if (pos > maxDocs)
-                    break;
+                //if (pos > maxDocs) limita escalafon, segun la especificacion solo aplica para el html
+                  //  break;
 
                 texto += pos + "\t";
                 texto += entry.Key + "\t";
