@@ -8,12 +8,12 @@ namespace ConsoleApp1
 {
     class Database
     {
+        private Query query;
         private List<string> list_terms = new List<string>();
-        private List<Query> list_queries = new List<Query>();
         private List<Document> doc_info = new List<Document>();
-        private Dictionary<string, Dictionary<string, Term>> query = new Dictionary<string, Dictionary<string, Term>>();
-        private Dictionary<string, Dictionary<string, Term>> words_per_doc = new Dictionary<string, Dictionary<string, Term>>();
+        private Dictionary<string, Term> query_info = new Dictionary<string, Term>();
         private Dictionary<string, int> appearances_words = new Dictionary<string, int>();
+        private Dictionary<string, Dictionary<string, Term>> words_per_doc = new Dictionary<string, Dictionary<string, Term>>();
 
         public Database()
         {
@@ -39,6 +39,11 @@ namespace ConsoleApp1
                     }
                 }
             }
+        }
+
+        public void Set_query(Query q)
+        {
+            this.query = q;
         }
 
         public List<string> Get_terms()
@@ -69,6 +74,12 @@ namespace ConsoleApp1
             return init;
         }
 
+        public void Set_query_diccionary()
+        {
+            this.query_info = this.Make_terms_dic();
+
+        }
+
         public void Set_diccionary()
         {
             
@@ -84,10 +95,23 @@ namespace ConsoleApp1
         {
             foreach (var temp in this.doc_info)
             {
-                foreach (var temp2 in temp.Get_words_document())
-                {
-                    this.words_per_doc[temp.Get_name()][temp2].Set_appearances();
-                }
+                this.Set_word_doc(temp);
+            }
+        }
+
+        public void Set_word_doc(Document doc)
+        {
+            foreach (var temp2 in doc.Get_words_document())
+            {
+                this.words_per_doc[doc.Get_name()][temp2].Set_appearances();
+            }
+        }
+
+        public void Set_word_query()
+        {
+            foreach (var temp2 in this.query.Get_words_query())
+            {
+                this.query_info[temp2].Set_appearances();
             }
         }
 
@@ -151,6 +175,27 @@ namespace ConsoleApp1
             foreach (var temp in this.appearances_words)
             {
                 Console.WriteLine("\t" + temp.Key + "\t: " + "\t" + temp.Value.ToString());
+            }
+        }
+
+        public void print4()
+        {
+            Console.WriteLine(this.query.Get_name());
+            foreach (var temp in this.query_info)
+            {
+                Console.WriteLine(temp.Key + ": " + temp.Value.Get_appearance());
+            }
+        }
+
+        public void print5()
+        {
+            Console.WriteLine(this.query.Get_name());
+            foreach (var temp in this.query_info)
+            {
+                if (temp.Value.Get_appearance() != 0)
+                {
+                    Console.WriteLine(temp.Key + ": " + temp.Value.Get_appearance());
+                }
             }
         }
     }

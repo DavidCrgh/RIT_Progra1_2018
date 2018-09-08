@@ -28,7 +28,7 @@ namespace ConsoleApp1
             return this.text;
         }
 
-        public void Set_words_document()
+        public void Set_words_query()
         {
             this.words_query = this.text.Split(' ').ToList();
         }
@@ -38,7 +38,7 @@ namespace ConsoleApp1
             this.words_query = list;
         }
 
-        public List<string> Get_words_document()
+        public List<string> Get_words_query()
         {
             return this.words_query;
         }
