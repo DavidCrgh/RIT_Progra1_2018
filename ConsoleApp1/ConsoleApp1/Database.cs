@@ -88,7 +88,6 @@ namespace ConsoleApp1
         public void Set_query_diccionary()
         {
             this.query_info = this.Make_terms_dic();
-
         }
 
         public void Set_diccionary()
@@ -154,60 +153,9 @@ namespace ConsoleApp1
             return this.appearances_words;
         }
 
-        public void print()
+        public Dictionary<string, Term> Get_dic_query()
         {
-            foreach (var temp in this.words_per_doc)
-            {
-                Console.WriteLine(temp.Key);
-                foreach (var temp2 in temp.Value)
-                {
-                    Console.WriteLine(temp2.Key + ": " + temp2.Value.Get_appearance());
-                }
-            }
-        }
-
-        public void print2()
-        {
-            foreach (var temp in this.words_per_doc)
-            {
-                Console.WriteLine(temp.Key);
-                foreach (var temp2 in temp.Value)
-                {
-                    if (temp2.Value.Get_appearance() != 0)
-                    {
-                        Console.WriteLine("\t" + temp2.Key + "\t: " + "\t" + temp2.Value.Get_appearance());
-                    }
-                }
-            }
-        }
-
-        public void print3()
-        {
-            foreach (var temp in this.appearances_words)
-            {
-                Console.WriteLine("\t" + temp.Key + "\t: " + "\t" + temp.Value.ToString());
-            }
-        }
-
-        public void print4()
-        {
-            Console.WriteLine(this.query.Get_name());
-            foreach (var temp in this.query_info)
-            {
-                Console.WriteLine(temp.Key + ": " + temp.Value.Get_appearance());
-            }
-        }
-
-        public void print5()
-        {
-            Console.WriteLine(this.query.Get_name());
-            foreach (var temp in this.query_info)
-            {
-                if (temp.Value.Get_appearance() != 0)
-                {
-                    Console.WriteLine(temp.Key + ": " + temp.Value.Get_appearance());
-                }
-            }
+            return this.query_info;
         }
     }
 }
