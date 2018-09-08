@@ -13,7 +13,7 @@ namespace ConsoleApp1.algoritmos
         private double avgdl; // promedio de |D|'s
         private const double K = 1.2; // parametro de funcion de similitud (valor default)
         private const double B = 0.75; // parametro de funcion de similitud (valor default)
-        public Scale scale;
+        public Scale scale { get; }
 
         public Okapi_BM25(Database indice)
         {
@@ -46,7 +46,8 @@ namespace ConsoleApp1.algoritmos
                 }
                 scale.Add_scale(doc_name, sim_D_Q);
             }
-            scale.print_Scale();
+            scale.Sort();
+            scale.print_Scale(); //TODO: Quitar
         }
 
         /**
@@ -73,7 +74,7 @@ namespace ConsoleApp1.algoritmos
          * Calcular_F_qi_D: obtiene la frecuencia f(qi, D) para un termino en un documento
          * Se accede a la matriz de ocurrencias (words_per_doc) del indice.
          */
-        public int Calcular_F_qi_D(string termino, string documento) //TODO: pasar a private
+        private int Calcular_F_qi_D(string termino, string documento)
         {
             return indice.Get_dic_docs_word()[documento][termino].Get_appearance();
         }
@@ -82,7 +83,7 @@ namespace ConsoleApp1.algoritmos
          * Calcular_avgdl: calcula cada |D| de la coleccion y los guarda en un diccionario;
          * despues obtiene el promedio de los D y lo guarda en memoria (avgdl).
          */
-        public void Calcular_avgdl() //TODO: pasar a private
+        private void Calcular_avgdl()
         {
             foreach (Document doc in indice.Get_doc_info())
             {
