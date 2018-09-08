@@ -57,16 +57,21 @@ namespace ConsoleApp1
 
             vectorial.algorithm();
 
-            vectorial.print();
-
             string query_text = Console.ReadLine();
 
             Query query = new Query("query",query_text.ToLower());
 
-            query.Set_words_document();
+            query.Set_words_query();
 
-            query.Set_words(Scrubber.Remove_stopwords(query.Get_words_document()));
+            query.Set_words(Scrubber.Remove_stopwords(query.Get_words_query()));
 
+            database.Set_query(query);
+
+            database.Set_query_diccionary();
+
+            database.Set_word_query();
+
+            database.print5();
 
             /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo_Raw(pathArchivo);
