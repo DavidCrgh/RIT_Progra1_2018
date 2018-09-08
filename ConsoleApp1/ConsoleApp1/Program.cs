@@ -69,7 +69,13 @@ namespace ConsoleApp1
 
             database.Set_word_query();
 
-            database.print5();
+            vectorial.Set_dic_query(database.Get_dic_query());
+
+            vectorial.Apply_algo_query();
+
+            vectorial.Make_Scale();
+
+            vectorial.print_Scale();
 
             /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);

@@ -9,7 +9,11 @@ namespace ConsoleApp1.algoritmos
     class Vectorial
     {
         private Dictionary<string, Dictionary<string, Term>> dic_words = new Dictionary<string, Dictionary<string, Term>>();
+        private Dictionary<string, double> word_yardstick = new Dictionary<string, double>();
+        private Dictionary<string, Term> query_works = new Dictionary<string, Term>();
+        private Dictionary<string, double> scale = new Dictionary<string, double>();
         private Dictionary<string, int> appearances = new Dictionary<string, int>();
+        private double query_yardstick = 0;
         private int quantity_docs = 0;
 
         public Vectorial()
@@ -32,15 +36,33 @@ namespace ConsoleApp1.algoritmos
             this.appearances = dic;
         }
 
+        public void Set_dic_query(Dictionary<string, Term> dic)
+        {
+            this.query_works = dic;
+        }
+
         public void algorithm()
         {
-            foreach (var temp in this.dic_words.Values)
+            foreach (var temp in this.dic_words.Keys)
             {
-                foreach (var word in temp.Keys)
+                double yardstick = 0;
+                foreach (var word in this.dic_words[temp].Keys)
                 {
-                    if (temp[word].Get_appearance() != 0)
+                    if (this.dic_words[temp][word].Get_appearance() != 0)
                     {
-                        temp[word].Set_vectorial(this.Calculate_weigth(temp[word]) * this.Calculate_N_ni(word));   
+                        this.dic_words[temp][word].Set_vectorial(this.Calculate_weigth(this.dic_words[temp][word]) * this.Calculate_N_ni(word));
+                        yardstick += Math.Pow(this.dic_words[temp][word].Get_vectorial(),2);
+                    }
+                }
+                yardstick = Math.Sqrt(yardstick);
+                this.word_yardstick.Add(temp,yardstick);
+                yardstick = 0;
+
+                foreach (var word in this.dic_words[temp].Keys)
+                {
+                    if (this.dic_words[temp][word].Get_appearance() != 0)
+                    {
+                        this.dic_words[temp][word].Set_vectorial_weight(this.dic_words[temp][word].Get_vectorial()/this.word_yardstick[temp]);
                     }
                 }
             }
@@ -59,6 +81,44 @@ namespace ConsoleApp1.algoritmos
             return value;
         }
 
+        public void Apply_algo_query()
+        {
+            double yardstick = 0;
+            foreach (var word in this.query_works.Keys)
+            {
+                if (this.query_works[word].Get_appearance() != 0)
+                {
+                    this.query_works[word].Set_vectorial(this.Calculate_weigth(this.query_works[word]) * this.Calculate_N_ni(word));
+                    yardstick += Math.Pow(this.query_works[word].Get_vectorial(), 2);
+                }
+            }
+            this.query_yardstick = Math.Sqrt(yardstick);
+            yardstick = 0;
+
+            foreach (var word in this.query_works.Keys)
+            {
+                if (this.query_works[word].Get_appearance() != 0)
+                {
+                    this.query_works[word].Set_vectorial_weight(this.query_works[word].Get_vectorial() / this.query_yardstick);
+                }
+            }
+        }
+
+        public void Make_Scale()
+        {
+            foreach (var doc in this.dic_words.Keys)
+            {
+                double value = 0;
+                foreach (var work in this.query_works.Keys)
+                {
+                    if (this.query_works[work].Get_appearance() != 0)
+                        value += this.query_works[work].Get_vectorial_normalize() * this.dic_words[doc][work].Get_vectorial_normalize();
+                }
+                this.scale.Add(doc, value);
+                value = 0;
+            }
+        }
+
         public void print()
         {
             foreach (var temp in this.dic_words.Keys)
@@ -68,9 +128,37 @@ namespace ConsoleApp1.algoritmos
                 {
                     if(temp2.Value.Get_vectorial() != 0)
                     {
-                        Console.WriteLine(temp2.Key + ": " + temp2.Value.Get_vectorial());
+                        Console.WriteLine(temp2.Key + "\t: " + temp2.Value.Get_vectorial() + "\t: " + temp2.Value.Get_vectorial_normalize());
                     }
                 }
+            }
+        }
+
+        public void print2()
+        {
+            foreach (var temp in this.word_yardstick.Keys)
+            {
+                Console.WriteLine(temp + "\t: " + this.word_yardstick[temp]);
+            }
+        }
+
+        public void print3()
+        {
+            Console.WriteLine("query");
+            foreach (var temp in this.query_works.Keys)
+            {
+                Console.WriteLine(temp + "\t: " + this.query_works[temp].Get_appearance() + "\t: " 
+                    + this.query_works[temp].Get_vectorial() + "\t: " + this.query_works[temp].Get_vectorial_normalize());
+            }
+            Console.WriteLine(this.query_yardstick);
+        }
+
+        public void print_Scale()
+        {
+            var sortedDict = from entry in this.scale orderby entry.Value descending select entry;
+            foreach (var temp in sortedDict)
+            {
+                Console.WriteLine(temp.Key + "\t:" + temp.Value);
             }
         }
     }
