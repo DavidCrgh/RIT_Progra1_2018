@@ -14,10 +14,31 @@ namespace ConsoleApp1.algoritmos
         private Dictionary<string, int> appearances = new Dictionary<string, int>();
         private double query_yardstick = 0;
         private int quantity_docs = 0;
+        private Database indice = new Database();
         public Scale scale = new Scale();
 
-        public Vectorial()
+        public Vectorial(Database d)
         {
+            this.indice = d;
+            this.Set_Docs();
+        }
+
+        public void Set_Docs()
+        {
+            this.Set_dic(indice.Get_dic_docs_word());
+
+            this.Set_dic_appearances(indice.Get_dic_appearances_words());
+
+            this.algorithm();
+        }
+
+        public void Compare_Query_Docs()
+        {
+            this.Set_dic_query(indice.Get_dic_query());
+
+            this.Apply_algo_query();
+
+            this.Make_Scale();
         }
 
         public void Set_quantity_docs()
