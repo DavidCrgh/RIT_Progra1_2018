@@ -13,12 +13,14 @@ namespace ConsoleApp1.algoritmos
         private double avgdl; // promedio de |D|'s
         private const double K = 1.2; // parametro de funcion de similitud (valor default)
         private const double B = 0.75; // parametro de funcion de similitud (valor default)
+        public Scale scale;
 
         public Okapi_BM25(Database indice)
         {
             this.indice = indice;
             doc_lengths = new Dictionary<string, int>();
             avgdl = 0.0;
+            scale = new Scale();
         }
 
         public void CrearEscalafonBM25()
@@ -40,12 +42,11 @@ namespace ConsoleApp1.algoritmos
                     if (Validar_Termino_IDF(qi))
                     {
                         sim_D_Q += Calcular_Peso_qi(doc_name, qi);
-                        Console.Write(doc.Get_name());
-                        Console.Write(" ");
-                        Console.WriteLine(sim_D_Q);
                     }
                 }
+                scale.Add_scale(doc_name, sim_D_Q);
             }
+            scale.print_Scale();
         }
 
         /**

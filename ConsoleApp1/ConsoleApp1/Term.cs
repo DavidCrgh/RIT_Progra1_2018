@@ -9,7 +9,7 @@ namespace ConsoleApp1
     class Term
     {
         private int appearances = 0;
-        private double weigth_bm25 = 0;
+        private double idf_bm25 = 0;
         private double weigth_vectorial_out = 0;
         private double weigth_vectorial_with = 0;
         private double similitude_per_word = 0;

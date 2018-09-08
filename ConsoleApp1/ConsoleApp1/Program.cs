@@ -95,13 +95,13 @@ namespace ConsoleApp1
                 Console.WriteLine(t);
             }*/
 
-            string pathColeccion = "C:\\Users\\davva\\Desktop\\RIT_P1\\ColeccionesPrueba\\1\\man-es";
+            string pathColeccion = "C:\\Users\\davva\\Desktop\\RIT_P1\\man-es";
             string pathStopwords = "";
             string pathIndice = "";
 
             Database indice = Indexer.IndexarColeccion(pathColeccion, pathStopwords, pathIndice);
 
-            string consulta = "representacion simbolica";
+            string consulta = "colas de mensajes para la comunicacion entre procesos";
 
             Indexer.IndexarQuery(consulta, indice);
 
