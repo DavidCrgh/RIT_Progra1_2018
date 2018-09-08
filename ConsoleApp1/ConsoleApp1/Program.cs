@@ -75,7 +75,7 @@ namespace ConsoleApp1
 
             vectorial.Make_Scale();
 
-            vectorial.print_Scale();
+            vectorial.scale.print_Scale();
 
             /*string pathArchivo = Console.ReadLine();
             string contenido = LectorColeccion.ObtenerContenidoArchivo(pathArchivo);

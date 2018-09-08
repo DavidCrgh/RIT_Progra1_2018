@@ -11,10 +11,10 @@ namespace ConsoleApp1.algoritmos
         private Dictionary<string, Dictionary<string, Term>> dic_words = new Dictionary<string, Dictionary<string, Term>>();
         private Dictionary<string, double> word_yardstick = new Dictionary<string, double>();
         private Dictionary<string, Term> query_works = new Dictionary<string, Term>();
-        private Dictionary<string, double> scale = new Dictionary<string, double>();
         private Dictionary<string, int> appearances = new Dictionary<string, int>();
         private double query_yardstick = 0;
         private int quantity_docs = 0;
+        public Scale scale = new Scale();
 
         public Vectorial()
         {
@@ -114,7 +114,7 @@ namespace ConsoleApp1.algoritmos
                     if (this.query_works[work].Get_appearance() != 0)
                         value += this.query_works[work].Get_vectorial_normalize() * this.dic_words[doc][work].Get_vectorial_normalize();
                 }
-                this.scale.Add(doc, value);
+                this.scale.Add_scale(doc, value);
                 value = 0;
             }
         }
@@ -151,15 +151,6 @@ namespace ConsoleApp1.algoritmos
                     + this.query_works[temp].Get_vectorial() + "\t: " + this.query_works[temp].Get_vectorial_normalize());
             }
             Console.WriteLine(this.query_yardstick);
-        }
-
-        public void print_Scale()
-        {
-            var sortedDict = from entry in this.scale orderby entry.Value descending select entry;
-            foreach (var temp in sortedDict)
-            {
-                Console.WriteLine(temp.Key + "\t:" + temp.Value);
-            }
         }
     }
 }
