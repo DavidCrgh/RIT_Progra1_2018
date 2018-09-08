@@ -46,6 +46,11 @@ namespace ConsoleApp1
             this.query = q;
         }
 
+        public Query Get_Query()
+        {
+            return this.query;
+        }
+
         public List<Document> Get_doc_info()
         {
             return this.doc_info;

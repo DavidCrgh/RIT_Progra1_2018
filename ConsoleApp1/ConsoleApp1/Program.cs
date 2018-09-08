@@ -13,7 +13,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Database database = new Database();
+            /*Database database = new Database();
             Vectorial vectorial = new Vectorial();
 
             string text1 = "Costa Rica denominada oficialmente República de Costa Rica" +
@@ -93,12 +93,18 @@ namespace ConsoleApp1
             string pathStopwords = "";
             string pathIndice = "";
 
-            Database terminos_coleccion = Indexer.Indexar(pathColeccion, pathStopwords, pathIndice);
+            Database indice = Indexer.IndexarColeccion(pathColeccion, pathStopwords, pathIndice);
 
-            Okapi_BM25 bm25 = new Okapi_BM25(terminos_coleccion);
-            bm25.Calcular_avgdl();
+            string consulta = "representacion simbolica";
 
-            int freq = bm25.Calcular_F_qi_D("caracteres", "console_codes.4");
+            Indexer.IndexarQuery(consulta, indice);
+
+            Okapi_BM25 bm25 = new Okapi_BM25(indice);
+
+            bm25.CrearEscalafonBM25();
+            //bm25.Calcular_avgdl();
+
+            //int freq = bm25.Calcular_F_qi_D("caracteres", "console_codes.4");
 
             Console.ReadKey();
         }

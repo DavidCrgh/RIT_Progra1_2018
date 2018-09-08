@@ -23,28 +23,35 @@ namespace ConsoleApp1.algoritmos
 
         public void CrearEscalafonBM25()
         {
-            List<string> terms_consulta = new List<string>(); //TODO mecanismo para procesar consulta en lista de terminos
+            List<string> terms_consulta = indice.Get_Query().Get_words_query();
 
             Calcular_avgdl();
 
-            foreach(Document doc in indice.Get_doc_info())
+            double sim_D_Q;
+            string doc_name;
+
+            foreach (Document doc in indice.Get_doc_info())
             {
-                string doc_name = doc.Get_name();
+                doc_name = doc.Get_name();
+                sim_D_Q = 0.0;
 
                 foreach (string qi in terms_consulta)
                 {
                     if (Validar_Termino_IDF(qi))
                     {
-                        double sim_D_Q = Calcular_sim_D_Q(doc_name, qi);
+                        sim_D_Q += Calcular_Peso_qi(doc_name, qi);
+                        Console.Write(doc.Get_name());
+                        Console.Write(" ");
+                        Console.WriteLine(sim_D_Q);
                     }
                 }
             }
         }
 
         /**
-         * Calcular_sim_D_Q: funcion de similitud del modelo Okapi BM25
+         * Calcular_Peso_qi: funcion de similitud del modelo Okapi BM25
          */
-        public double Calcular_sim_D_Q(string doc, string qi)
+        public double Calcular_Peso_qi(string doc, string qi)
         {
             double frecuencia_qi = Calcular_F_qi_D(qi, doc);
             double doc_length = doc_lengths[doc];
@@ -110,14 +117,12 @@ namespace ConsoleApp1.algoritmos
             double N = indice.Get_doc_info().Count;
             double n_qi = indice.Get_dic_appearances_words()[termino]; 
 
-            //TODO: si un termino aparece en mas de la mitad de los documentos se debe eliminar
-
             double numerador_log = N - n_qi + 0.5;
             double denominador_log = n_qi + 0.5;
 
             double idf_qi = Math.Log(numerador_log / denominador_log, 10); // log base 10
 
-            return 0.0;
+            return idf_qi;
         }
 
         private bool Validar_Termino_IDF(string termino)
