@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LibreriaBusqueda.lectores;
 
 namespace AplicacionBusqueda
 {
@@ -24,6 +23,8 @@ namespace AplicacionBusqueda
         public Okapi_BM25 bm25 = null;
         public Vectorial vectorial = null;
 
+        private Inspector inspector;
+
         public ControllerPrincipal()
         {
             this.pathIndex = "";
@@ -32,9 +33,34 @@ namespace AplicacionBusqueda
             this.indice = null;
         }
 
+        public void Init_Inspector()
+        {
+            this.inspector = new Inspector(this.indice);
+        }
+
         public void Indexar_Consulta(string consulta)
         {
             Indexer.IndexarQuery(consulta, this.indice);
+        }
+
+        public string Obtener_Info_Extra_Termino(string termino)
+        {
+            return this.inspector.Obtener_Info_Extra_Termino(termino);
+        }
+
+        public Dictionary<string,Term> Consult_Doc(string doc)
+        {
+            return this.inspector.Obtener_Info_Doc(doc);
+        }
+
+        public List<string> Consult_Doc_Extra(string doc)
+        {
+            return this.inspector.Obtener_longitud_norma(doc);
+        }
+
+        public List<List<string>> Consult_Word(string word)
+        {
+            return this.inspector.Obtener_Info_Termino(word);
         }
 
         public void Inicializar_Vectorial()

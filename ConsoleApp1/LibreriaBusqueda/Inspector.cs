@@ -15,25 +15,37 @@ namespace LibreriaBusqueda
             this.indice = indice;
         }
 
-        public void Obtener_Info_Doc(string docName)
+        public Dictionary<string, Term> Obtener_Info_Doc(string docName)
         {
-            Consultado consultado = new Consultado(docName);
-            consultado.Set_info_doc(indice.Get_dic_docs_word()[docName]);
+            return this.indice.Get_dic_docs_word()[docName];
+        }
+
+        public List<string> Obtener_longitud_norma(string docName)
+        {
+            List<string> datos = new List<string>();
             foreach (var item in this.indice.Get_doc_info())
             {
                 if (item.Get_name() == docName)
                 {
-                    consultado.Set_yas_lon(item.Get_size().ToString(), item.Get_yardstick().ToString());
+                    datos.Add(item.Get_size().ToString());
+                    datos.Add(item.Get_size().ToString());
                 }
             }
+            return datos;
         }
 
-        public void Obtener_Info_Termino(string termino)
+        public List<List<string>> Obtener_Info_Termino(string termino)
         {
-            Consultado consultado = new Consultado(termino);
-            string doc = indice.Get_dic_docs_word().First().Key;
-            consultado.Set_info_word(indice.Get_dic_docs_word()[doc]);
-            consultado.Set_appaerances(this.indice.Get_dic_appearances_words()[termino].ToString());
+            Consultado consulado = new Consultado(termino);
+            consulado.Set_info_word(this.indice);
+            return consulado.Get_info();
         }
+
+        public string Obtener_Info_Extra_Termino(string termino)
+        {
+            Consultado consulado = new Consultado(termino);
+            return consulado.Get_appearance(this.indice);
+        }
+
     }
 }

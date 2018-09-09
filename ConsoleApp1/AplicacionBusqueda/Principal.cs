@@ -135,12 +135,60 @@ namespace AplicacionBusqueda
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            if(this.textBox1.Text != "")
+            {
+                this.controlador.Init_Inspector();
+                this.dataGridView1.Columns.Clear();
+                this.dataGridView1.Rows.Clear();
+                this.dataGridView1.ColumnCount = 6;
+                dataGridView1.ColumnHeadersVisible = true;
+                dataGridView1.ReadOnly = true;
+                dataGridView1.Columns[0].Name = "Documento";
+                dataGridView1.Columns[1].Name = "Termino";
+                dataGridView1.Columns[2].Name = "Apariciones";
+                dataGridView1.Columns[3].Name = "Peso";
+                dataGridView1.Columns[4].Name = "Tamaño";
+                dataGridView1.Columns[5].Name = "Norma";;
 
+                foreach (var item in this.controlador.Consult_Doc(this.textBox1.Text).Keys)
+                {
+                    this.dataGridView1.Rows.Add(this.textBox1.Text, item, this.controlador.Consult_Doc(this.textBox1.Text)[item].Get_appearance(),
+                        this.controlador.Consult_Doc(this.textBox1.Text)[item].Get_vectorial(),
+                        this.controlador.Consult_Doc_Extra(this.textBox1.Text)[0],
+                        this.controlador.Consult_Doc_Extra(this.textBox1.Text)[1]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor ingrese un documento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if(this.textBox2.Text != "")
+            {
+                this.controlador.Init_Inspector();
+                this.dataGridView1.Columns.Clear();
+                this.dataGridView1.Rows.Clear();
+                this.dataGridView1.ColumnCount = 5;
+                dataGridView1.ColumnHeadersVisible = true;
+                dataGridView1.ReadOnly = true;
+                dataGridView1.Columns[0].Name = "Termino";
+                dataGridView1.Columns[1].Name = "Documento";
+                dataGridView1.Columns[2].Name = "Vectorial idf";
+                dataGridView1.Columns[3].Name = "BM25 idf";
+                dataGridView1.Columns[4].Name = "Ni";
 
+                foreach (var item in this.controlador.Consult_Word(this.textBox2.Text))
+                {
+                    this.dataGridView1.Rows.Add(this.textBox2.Text, item[0], item[1], item[2], this.controlador.Obtener_Info_Extra_Termino(this.textBox2.Text));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor ingrese un termino", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void label11_Click(object sender, EventArgs e)

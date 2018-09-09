@@ -36,6 +36,7 @@ namespace AplicacionBusqueda
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tab_buscador = new System.Windows.Forms.TabPage();
+            this.btn_buscar = new System.Windows.Forms.Button();
             this.entrada_numDocs = new System.Windows.Forms.TextBox();
             this.btn_html = new System.Windows.Forms.Button();
             this.btn_escalafon = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@ namespace AplicacionBusqueda
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btn_buscar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tab_indexer.SuspendLayout();
             this.tab_buscador.SuspendLayout();
@@ -167,6 +167,16 @@ namespace AplicacionBusqueda
             this.tab_buscador.TabIndex = 1;
             this.tab_buscador.Text = "Buscador";
             this.tab_buscador.UseVisualStyleBackColor = true;
+            // 
+            // btn_buscar
+            // 
+            this.btn_buscar.Location = new System.Drawing.Point(476, 18);
+            this.btn_buscar.Name = "btn_buscar";
+            this.btn_buscar.Size = new System.Drawing.Size(75, 23);
+            this.btn_buscar.TabIndex = 14;
+            this.btn_buscar.Text = "Buscar";
+            this.btn_buscar.UseVisualStyleBackColor = true;
+            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
             // 
             // entrada_numDocs
             // 
@@ -368,16 +378,6 @@ namespace AplicacionBusqueda
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // btn_buscar
-            // 
-            this.btn_buscar.Location = new System.Drawing.Point(476, 18);
-            this.btn_buscar.Name = "btn_buscar";
-            this.btn_buscar.Size = new System.Drawing.Size(75, 23);
-            this.btn_buscar.TabIndex = 14;
-            this.btn_buscar.Text = "Buscar";
-            this.btn_buscar.UseVisualStyleBackColor = true;
-            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
-            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,6 +386,7 @@ namespace AplicacionBusqueda
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Herramientas de Busqueda";
             this.tabControl1.ResumeLayout(false);
             this.tab_indexer.ResumeLayout(false);
