@@ -48,7 +48,13 @@ namespace AplicacionBusqueda
 
         private void btn_indice_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "";
+            openFileDialog.ShowDialog();
+            if (openFileDialog.FileName != "")
+            {
 
+            }
         }
 
         private void btn_numdocs_Click(object sender, EventArgs e)
@@ -59,18 +65,25 @@ namespace AplicacionBusqueda
         private void btn_escalafon_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "";
+            saveFileDialog1.Filter = "Text file | *.txt";
             saveFileDialog1.Title = "Guardar escalafón";
             saveFileDialog1.ShowDialog();
             if (saveFileDialog1.FileName != "")
             {
-                Console.WriteLine("Hola mundo");
+                controlador.pathEscalafon = saveFileDialog1.FileName;
             }
         }
 
         private void btn_html_Click(object sender, EventArgs e)
         {
-
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "HTML file | *.html";
+            saveFileDialog1.Title = "Guardar html";
+            saveFileDialog1.ShowDialog();
+            if (saveFileDialog1.FileName != "")
+            {
+                controlador.pathHTML = saveFileDialog1.FileName;
+            }
         }
 
         private void btn_stopwords_Click(object sender, EventArgs e)

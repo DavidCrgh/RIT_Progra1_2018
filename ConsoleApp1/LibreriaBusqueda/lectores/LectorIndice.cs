@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda.lectores
 {
-    class LectorIndice
+    public class LectorIndice
     {
         public static Database Leer_Indice(string path)
         {

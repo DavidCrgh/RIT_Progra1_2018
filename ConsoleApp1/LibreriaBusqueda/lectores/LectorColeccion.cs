@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace LibreriaBusqueda.lectores
 {
-    class LectorColeccion
+    public class LectorColeccion
     {
         public static List<Document> ObtenerColeccion(string sDir)
         {

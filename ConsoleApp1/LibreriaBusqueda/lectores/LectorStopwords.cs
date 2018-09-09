@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda.lectores
 {
-    class LectorStopwords
+    public class LectorStopwords
     {
         public static List<string> ObtenerStopwords(string sDir)
         {
