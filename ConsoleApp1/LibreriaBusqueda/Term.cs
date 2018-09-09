@@ -10,6 +10,7 @@ namespace LibreriaBusqueda
     {
         private int appearances = 0;
         private double idf_bm25 = 0;
+        private double idf_vec = 0;
         private double weigth_vectorial_out = 0;
         private double weigth_vectorial_with = 0;
         private double similitude_per_word = 0;
@@ -17,6 +18,11 @@ namespace LibreriaBusqueda
         public Term(int num)
         {
             this.appearances = num;
+        }
+
+        public void Set_vec(double n)
+        {
+            this.idf_vec = n;
         }
 
         public void Set_appearances()
@@ -57,6 +63,11 @@ namespace LibreriaBusqueda
         public double Get_bm25()
         {
             return this.idf_bm25;
+        }
+
+        public double Get_vec()
+        {
+            return this.idf_vec;
         }
 
         public double Get_vectorial_normalize()

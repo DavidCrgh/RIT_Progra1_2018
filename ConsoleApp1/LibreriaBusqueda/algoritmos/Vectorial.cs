@@ -23,6 +23,20 @@ namespace LibreriaBusqueda.algoritmos
             this.Set_Docs();
         }
 
+        public void Set_yardstick_to_doc()
+        {
+            foreach (var temp in this.word_yardstick.Keys)
+            {
+                foreach (var temp2 in this.indice.Get_doc_info())
+                {
+                    if (temp2.Get_name() == temp)
+                    {
+                        temp2.Set_yardstick(this.word_yardstick[temp]);
+                    }
+                }
+            }
+        }
+
         public void Set_Docs()
         {
             this.Set_dic(indice.Get_dic_docs_word());
@@ -30,6 +44,8 @@ namespace LibreriaBusqueda.algoritmos
             this.Set_dic_appearances(indice.Get_dic_appearances_words());
 
             this.algorithm();
+
+            this.Set_yardstick_to_doc();
         }
 
         public void Compare_Query_Docs()
@@ -72,6 +88,7 @@ namespace LibreriaBusqueda.algoritmos
                     if (this.dic_words[temp][word].Get_appearance() != 0)
                     {
                         this.dic_words[temp][word].Set_vectorial(this.Calculate_weigth(this.dic_words[temp][word]) * this.Calculate_N_ni(word));
+                        this.dic_words[temp][word].Set_vec(this.Calculate_N_ni(word));
                         yardstick += Math.Pow(this.dic_words[temp][word].Get_vectorial(),2);
                     }
                 }

@@ -35,6 +35,7 @@ namespace LibreriaBusqueda.algoritmos
             foreach (Document doc in indice.Get_doc_info())
             {
                 doc_name = doc.Get_name();
+                doc.Set_size(this.doc_lengths[doc_name]);
                 sim_D_Q = 0.0;
 
                 foreach (string qi in terms_consulta)

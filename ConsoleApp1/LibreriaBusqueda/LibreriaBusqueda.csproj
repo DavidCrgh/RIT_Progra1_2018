@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="algoritmos\Okapi_BM25.cs" />
     <Compile Include="algoritmos\Vectorial.cs" />
+    <Compile Include="Consultado.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="escritores\EscritorEscalafon.cs" />
