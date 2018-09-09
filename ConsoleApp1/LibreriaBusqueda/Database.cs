@@ -119,9 +119,9 @@ namespace LibreriaBusqueda
 
         public void Set_word_query()
         {
-            foreach (var temp2 in this.query.Get_words_query())
+            foreach (var term in this.query.Get_words_query())
             {
-                this.query_info[temp2].Set_appearances();
+                this.query_info[term].Set_appearances();
             }
         }
 

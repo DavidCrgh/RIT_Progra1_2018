@@ -18,7 +18,7 @@ namespace AplicacionBusqueda
         [STAThread]
         static void Main()
         {
-            string pathColeccion = "C:\\Users\\User\\Downloads\\Tarea programada 1\\man-es";
+            /*string pathColeccion = "C:\\Users\\davva\\Desktop\\RIT_P1\\man-es";
             string pathStopwords = "";
             string pathIndice = "";
 
@@ -41,11 +41,11 @@ namespace AplicacionBusqueda
 
             EscritorEscalafon escritor = new EscritorEscalafon(indice.Get_doc_info(), bm25.scale, 30);
             escritor.Escribir_Texto(pathEscalafonTexto);
-            escritor.Escribir_HTML(pathEscalafonHTML);
+            escritor.Escribir_HTML(pathEscalafonHTML);*/
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Principal());
         }
     }
 }
