@@ -28,7 +28,10 @@ namespace LibreriaBusqueda.escritores
             foreach(KeyValuePair<string, double> entry in escalafon.Get_scale())
             {
                 //if (pos > maxDocs) limita escalafon, segun la especificacion solo aplica para el html
-                  //  break;
+                //  break;
+
+                if (entry.Value <= 0)
+                    break;
 
                 texto += pos + "\t";
                 texto += entry.Key + "\t";
@@ -95,7 +98,7 @@ namespace LibreriaBusqueda.escritores
             
             foreach (KeyValuePair<string, double> entry in escalafon.Get_scale())
             {
-                if (pos > maxDocs)
+                if (pos > maxDocs | entry.Value <= 0)
                     break;
 
                 doc_name_actual = entry.Key;
