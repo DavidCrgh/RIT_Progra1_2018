@@ -8,7 +8,7 @@ namespace LibreriaBusqueda
 {
     public class Indexer
     {
-        public static Database IndexarColeccion(string pathColeccion, string pathStopwords, string pathIndice)
+        public static Database IndexarColeccion(string pathColeccion, string pathStopwords)
         {
             //TODO: pathIndice no es utilizado, hay que crear y llamar a componente que
             // escribe el indice.
