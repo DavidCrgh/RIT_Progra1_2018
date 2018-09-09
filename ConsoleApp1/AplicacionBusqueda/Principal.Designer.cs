@@ -36,6 +36,13 @@ namespace AplicacionBusqueda
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tab_buscador = new System.Windows.Forms.TabPage();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.btn_html = new System.Windows.Forms.Button();
+            this.btn_escalafon = new System.Windows.Forms.Button();
+            this.btn_indice = new System.Windows.Forms.Button();
+            this.rbtn_bm25 = new System.Windows.Forms.RadioButton();
+            this.rbtn_vec = new System.Windows.Forms.RadioButton();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,20 +50,13 @@ namespace AplicacionBusqueda
             this.label3 = new System.Windows.Forms.Label();
             this.entrada_consulta = new System.Windows.Forms.TextBox();
             this.tab_inspector = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
-            this.rbtn_vec = new System.Windows.Forms.RadioButton();
-            this.rbtn_bm25 = new System.Windows.Forms.RadioButton();
-            this.btn_indice = new System.Windows.Forms.Button();
-            this.btn_escalafon = new System.Windows.Forms.Button();
-            this.btn_html = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.btn_consultar_doc = new System.Windows.Forms.Button();
             this.btn_consultar_term = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.btn_consultar_doc = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tab_indexer.SuspendLayout();
             this.tab_buscador.SuspendLayout();
@@ -99,6 +99,7 @@ namespace AplicacionBusqueda
             this.btn_indexar.TabIndex = 4;
             this.btn_indexar.Text = "Indexar";
             this.btn_indexar.UseVisualStyleBackColor = true;
+            this.btn_indexar.Click += new System.EventHandler(this.btn_indexar_Click);
             // 
             // btn_coleccion
             // 
@@ -164,6 +165,79 @@ namespace AplicacionBusqueda
             this.tab_buscador.TabIndex = 1;
             this.tab_buscador.Text = "Buscador";
             this.tab_buscador.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(161, 124);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(54, 20);
+            this.textBox3.TabIndex = 13;
+            // 
+            // btn_html
+            // 
+            this.btn_html.Location = new System.Drawing.Point(161, 190);
+            this.btn_html.Name = "btn_html";
+            this.btn_html.Size = new System.Drawing.Size(54, 23);
+            this.btn_html.TabIndex = 12;
+            this.btn_html.Text = "...";
+            this.btn_html.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_html.UseVisualStyleBackColor = true;
+            this.btn_html.Click += new System.EventHandler(this.btn_html_Click);
+            // 
+            // btn_escalafon
+            // 
+            this.btn_escalafon.Location = new System.Drawing.Point(161, 154);
+            this.btn_escalafon.Name = "btn_escalafon";
+            this.btn_escalafon.Size = new System.Drawing.Size(54, 23);
+            this.btn_escalafon.TabIndex = 11;
+            this.btn_escalafon.Text = "...";
+            this.btn_escalafon.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_escalafon.UseVisualStyleBackColor = true;
+            this.btn_escalafon.Click += new System.EventHandler(this.btn_escalafon_Click);
+            // 
+            // btn_indice
+            // 
+            this.btn_indice.Location = new System.Drawing.Point(161, 92);
+            this.btn_indice.Name = "btn_indice";
+            this.btn_indice.Size = new System.Drawing.Size(54, 23);
+            this.btn_indice.TabIndex = 9;
+            this.btn_indice.Text = "...";
+            this.btn_indice.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_indice.UseVisualStyleBackColor = true;
+            this.btn_indice.Click += new System.EventHandler(this.btn_indice_Click);
+            // 
+            // rbtn_bm25
+            // 
+            this.rbtn_bm25.AutoSize = true;
+            this.rbtn_bm25.Location = new System.Drawing.Point(233, 62);
+            this.rbtn_bm25.Name = "rbtn_bm25";
+            this.rbtn_bm25.Size = new System.Drawing.Size(53, 17);
+            this.rbtn_bm25.TabIndex = 8;
+            this.rbtn_bm25.TabStop = true;
+            this.rbtn_bm25.Text = "BM25";
+            this.rbtn_bm25.UseVisualStyleBackColor = true;
+            this.rbtn_bm25.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // rbtn_vec
+            // 
+            this.rbtn_vec.AutoSize = true;
+            this.rbtn_vec.Location = new System.Drawing.Point(161, 62);
+            this.rbtn_vec.Name = "rbtn_vec";
+            this.rbtn_vec.Size = new System.Drawing.Size(66, 17);
+            this.rbtn_vec.TabIndex = 7;
+            this.rbtn_vec.TabStop = true;
+            this.rbtn_vec.Text = "Vectorial";
+            this.rbtn_vec.UseVisualStyleBackColor = true;
+            this.rbtn_vec.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(36, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(48, 13);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Consulta";
             // 
             // label7
             // 
@@ -233,112 +307,15 @@ namespace AplicacionBusqueda
             this.tab_inspector.Text = "Inspector";
             this.tab_inspector.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // btn_consultar_term
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(36, 23);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 13);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Consulta";
-            // 
-            // rbtn_vec
-            // 
-            this.rbtn_vec.AutoSize = true;
-            this.rbtn_vec.Location = new System.Drawing.Point(161, 62);
-            this.rbtn_vec.Name = "rbtn_vec";
-            this.rbtn_vec.Size = new System.Drawing.Size(66, 17);
-            this.rbtn_vec.TabIndex = 7;
-            this.rbtn_vec.TabStop = true;
-            this.rbtn_vec.Text = "Vectorial";
-            this.rbtn_vec.UseVisualStyleBackColor = true;
-            this.rbtn_vec.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // rbtn_bm25
-            // 
-            this.rbtn_bm25.AutoSize = true;
-            this.rbtn_bm25.Location = new System.Drawing.Point(233, 62);
-            this.rbtn_bm25.Name = "rbtn_bm25";
-            this.rbtn_bm25.Size = new System.Drawing.Size(53, 17);
-            this.rbtn_bm25.TabIndex = 8;
-            this.rbtn_bm25.TabStop = true;
-            this.rbtn_bm25.Text = "BM25";
-            this.rbtn_bm25.UseVisualStyleBackColor = true;
-            this.rbtn_bm25.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-            // 
-            // btn_indice
-            // 
-            this.btn_indice.Location = new System.Drawing.Point(161, 92);
-            this.btn_indice.Name = "btn_indice";
-            this.btn_indice.Size = new System.Drawing.Size(54, 23);
-            this.btn_indice.TabIndex = 9;
-            this.btn_indice.Text = "...";
-            this.btn_indice.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_indice.UseVisualStyleBackColor = true;
-            this.btn_indice.Click += new System.EventHandler(this.btn_indice_Click);
-            // 
-            // btn_escalafon
-            // 
-            this.btn_escalafon.Location = new System.Drawing.Point(161, 154);
-            this.btn_escalafon.Name = "btn_escalafon";
-            this.btn_escalafon.Size = new System.Drawing.Size(54, 23);
-            this.btn_escalafon.TabIndex = 11;
-            this.btn_escalafon.Text = "...";
-            this.btn_escalafon.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_escalafon.UseVisualStyleBackColor = true;
-            this.btn_escalafon.Click += new System.EventHandler(this.btn_escalafon_Click);
-            // 
-            // btn_html
-            // 
-            this.btn_html.Location = new System.Drawing.Point(161, 190);
-            this.btn_html.Name = "btn_html";
-            this.btn_html.Size = new System.Drawing.Size(54, 23);
-            this.btn_html.TabIndex = 12;
-            this.btn_html.Text = "...";
-            this.btn_html.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_html.UseVisualStyleBackColor = true;
-            this.btn_html.Click += new System.EventHandler(this.btn_html_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 48);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(703, 430);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(62, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Documento";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(422, 13);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 13);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Término";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(82, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(167, 20);
-            this.textBox1.TabIndex = 3;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(473, 13);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(167, 20);
-            this.textBox2.TabIndex = 4;
+            this.btn_consultar_term.Location = new System.Drawing.Point(646, 10);
+            this.btn_consultar_term.Name = "btn_consultar_term";
+            this.btn_consultar_term.Size = new System.Drawing.Size(75, 23);
+            this.btn_consultar_term.TabIndex = 6;
+            this.btn_consultar_term.Text = "Consultar";
+            this.btn_consultar_term.UseVisualStyleBackColor = true;
+            this.btn_consultar_term.Click += new System.EventHandler(this.button2_Click);
             // 
             // btn_consultar_doc
             // 
@@ -350,22 +327,46 @@ namespace AplicacionBusqueda
             this.btn_consultar_doc.UseVisualStyleBackColor = true;
             this.btn_consultar_doc.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // btn_consultar_term
+            // textBox2
             // 
-            this.btn_consultar_term.Location = new System.Drawing.Point(646, 10);
-            this.btn_consultar_term.Name = "btn_consultar_term";
-            this.btn_consultar_term.Size = new System.Drawing.Size(75, 23);
-            this.btn_consultar_term.TabIndex = 6;
-            this.btn_consultar_term.Text = "Consultar";
-            this.btn_consultar_term.UseVisualStyleBackColor = true;
-            this.btn_consultar_term.Click += new System.EventHandler(this.button2_Click);
+            this.textBox2.Location = new System.Drawing.Point(473, 13);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(167, 20);
+            this.textBox2.TabIndex = 4;
             // 
-            // textBox3
+            // textBox1
             // 
-            this.textBox3.Location = new System.Drawing.Point(161, 124);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(54, 20);
-            this.textBox3.TabIndex = 13;
+            this.textBox1.Location = new System.Drawing.Point(82, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(167, 20);
+            this.textBox1.TabIndex = 3;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(422, 13);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(45, 13);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Término";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(13, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(62, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Documento";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(16, 48);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(703, 430);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Principal
             // 
