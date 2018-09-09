@@ -15,8 +15,11 @@ namespace AplicacionBusqueda
 {
     public partial class Principal : Form
     {
+        private ControllerPrincipal controlador;
+
         public Principal()
         {
+            controlador = new ControllerPrincipal();
             InitializeComponent();
         }
 
@@ -54,7 +57,14 @@ namespace AplicacionBusqueda
 
         private void btn_escalafon_Click(object sender, EventArgs e)
         {
-
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "";
+            saveFileDialog1.Title = "Guardar escalafón";
+            saveFileDialog1.ShowDialog();
+            if (saveFileDialog1.FileName != "")
+            {
+                Console.WriteLine("Hola mundo");
+            }
         }
 
         private void btn_html_Click(object sender, EventArgs e)
