@@ -91,7 +91,7 @@ namespace AplicacionBusqueda
                     {
                         using (myStream)
                         {
-                            MessageBox.Show(openFileDialog1.FileName.ToString());
+                            this.controlador.pathStopwords = openFileDialog1.FileName;
                         }
                     }
                 }
@@ -110,7 +110,7 @@ namespace AplicacionBusqueda
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    MessageBox.Show("Files found: " + fbd.SelectedPath, "Message");
+                    this.controlador.pathCollection = fbd.SelectedPath;
                 }
             }
         }
@@ -143,8 +143,12 @@ namespace AplicacionBusqueda
             saveFileDialog1.ShowDialog();
             if (saveFileDialog1.FileName != "")
             {
-                Console.WriteLine("Hola mundo");
+                this.controlador.pathIndex = saveFileDialog1.FileName;
+                this.controlador.Set_index();
+                this.controlador.Write_index();
+                MessageBox.Show("Si puede");
             }
+            MessageBox.Show("Mamones");
         }
     }
 }

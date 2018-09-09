@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaBusqueda
 {
+    [Serializable]
     public class Query
     {
         private string name = "";
