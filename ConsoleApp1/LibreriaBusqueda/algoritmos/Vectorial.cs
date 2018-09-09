@@ -55,6 +55,8 @@ namespace LibreriaBusqueda.algoritmos
             this.Apply_algo_query();
 
             this.Make_Scale();
+
+            this.scale.Sort();
         }
 
         public void Set_quantity_docs()

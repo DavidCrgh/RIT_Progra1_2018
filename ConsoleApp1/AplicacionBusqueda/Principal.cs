@@ -158,10 +158,27 @@ namespace AplicacionBusqueda
             {
                 this.controlador.pathIndex = saveFileDialog1.FileName;
                 this.controlador.Set_index();
-                this.controlador.Write_index();
-                MessageBox.Show("Si puede");
+                //this.controlador.Write_index();
+                MessageBox.Show("Indice completado.");
             }
-            MessageBox.Show("Mamones");
+        }
+
+        private void btn_buscar_Click(object sender, EventArgs e)
+        {
+            controlador.numDocs = Int32.Parse(entrada_numDocs.Text);
+            string consulta = entrada_consulta.Text;
+            controlador.Indexar_Consulta(consulta);
+
+            if (rbtn_vec.Checked)
+            {
+                controlador.Inicializar_Vectorial();
+                controlador.Escribir_Escalafon_Vectorial();
+            }
+            else //BM25 checked
+            {
+                controlador.Inicializar_BM25();
+                controlador.Escribir_Escalafon_BM25();
+            }
         }
     }
 }

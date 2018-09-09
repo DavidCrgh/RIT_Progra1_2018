@@ -36,7 +36,7 @@ namespace AplicacionBusqueda
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tab_buscador = new System.Windows.Forms.TabPage();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.entrada_numDocs = new System.Windows.Forms.TextBox();
             this.btn_html = new System.Windows.Forms.Button();
             this.btn_escalafon = new System.Windows.Forms.Button();
             this.btn_indice = new System.Windows.Forms.Button();
@@ -57,6 +57,7 @@ namespace AplicacionBusqueda
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btn_buscar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tab_indexer.SuspendLayout();
             this.tab_buscador.SuspendLayout();
@@ -145,7 +146,8 @@ namespace AplicacionBusqueda
             // 
             // tab_buscador
             // 
-            this.tab_buscador.Controls.Add(this.textBox3);
+            this.tab_buscador.Controls.Add(this.btn_buscar);
+            this.tab_buscador.Controls.Add(this.entrada_numDocs);
             this.tab_buscador.Controls.Add(this.btn_html);
             this.tab_buscador.Controls.Add(this.btn_escalafon);
             this.tab_buscador.Controls.Add(this.btn_indice);
@@ -166,12 +168,12 @@ namespace AplicacionBusqueda
             this.tab_buscador.Text = "Buscador";
             this.tab_buscador.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // entrada_numDocs
             // 
-            this.textBox3.Location = new System.Drawing.Point(161, 124);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(54, 20);
-            this.textBox3.TabIndex = 13;
+            this.entrada_numDocs.Location = new System.Drawing.Point(161, 124);
+            this.entrada_numDocs.Name = "entrada_numDocs";
+            this.entrada_numDocs.Size = new System.Drawing.Size(54, 20);
+            this.entrada_numDocs.TabIndex = 13;
             // 
             // btn_html
             // 
@@ -213,7 +215,6 @@ namespace AplicacionBusqueda
             this.rbtn_bm25.Name = "rbtn_bm25";
             this.rbtn_bm25.Size = new System.Drawing.Size(53, 17);
             this.rbtn_bm25.TabIndex = 8;
-            this.rbtn_bm25.TabStop = true;
             this.rbtn_bm25.Text = "BM25";
             this.rbtn_bm25.UseVisualStyleBackColor = true;
             this.rbtn_bm25.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
@@ -225,7 +226,6 @@ namespace AplicacionBusqueda
             this.rbtn_vec.Name = "rbtn_vec";
             this.rbtn_vec.Size = new System.Drawing.Size(66, 17);
             this.rbtn_vec.TabIndex = 7;
-            this.rbtn_vec.TabStop = true;
             this.rbtn_vec.Text = "Vectorial";
             this.rbtn_vec.UseVisualStyleBackColor = true;
             this.rbtn_vec.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -368,6 +368,16 @@ namespace AplicacionBusqueda
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // btn_buscar
+            // 
+            this.btn_buscar.Location = new System.Drawing.Point(476, 18);
+            this.btn_buscar.Name = "btn_buscar";
+            this.btn_buscar.Size = new System.Drawing.Size(75, 23);
+            this.btn_buscar.TabIndex = 14;
+            this.btn_buscar.Text = "Buscar";
+            this.btn_buscar.UseVisualStyleBackColor = true;
+            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -419,7 +429,8 @@ namespace AplicacionBusqueda
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btn_consultar_term;
         private System.Windows.Forms.Button btn_consultar_doc;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox entrada_numDocs;
+        private System.Windows.Forms.Button btn_buscar;
     }
 }
 

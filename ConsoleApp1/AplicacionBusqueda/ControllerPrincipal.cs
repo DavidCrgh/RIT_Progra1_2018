@@ -18,10 +18,11 @@ namespace AplicacionBusqueda
         public string pathStopwords { set; get; }
         public string pathEscalafon { set; get; }
         public string pathHTML { set; get; }
+        public int numDocs { set; get; }
         private Database indice { set; get; }
 
-        private Okapi_BM25 bm25 = null;
-        private Vectorial vectorial = null;
+        public Okapi_BM25 bm25 = null;
+        public Vectorial vectorial = null;
 
         public ControllerPrincipal()
         {
@@ -29,6 +30,45 @@ namespace AplicacionBusqueda
             this.pathCollection = "";
             this.pathStopwords = "";
             this.indice = null;
+        }
+
+        public void Indexar_Consulta(string consulta)
+        {
+            Indexer.IndexarQuery(consulta, this.indice);
+        }
+
+        public void Inicializar_Vectorial()
+        {
+            this.vectorial = new Vectorial(this.indice);
+            this.vectorial.Compare_Query_Docs();
+        }
+
+        public void Escribir_Escalafon_Vectorial()
+        {
+            EscritorEscalafon escritor = new EscritorEscalafon(
+                indice.Get_doc_info(),
+                vectorial.scale,
+                numDocs
+                );
+            escritor.Escribir_Texto(pathEscalafon);
+            escritor.Escribir_HTML(pathHTML);
+        }
+
+        public void Inicializar_BM25()
+        {
+            this.bm25 = new Okapi_BM25(this.indice);
+            this.bm25.CrearEscalafonBM25();
+        }
+
+        public void Escribir_Escalafon_BM25()
+        {
+            EscritorEscalafon escritor = new EscritorEscalafon(
+                indice.Get_doc_info(),
+                bm25.scale,
+                numDocs
+                );
+            escritor.Escribir_Texto(pathEscalafon);
+            escritor.Escribir_HTML(pathHTML);
         }
 
         public void Set_index()
