@@ -25,9 +25,11 @@ namespace LibreriaBusqueda
             return indice;
         }
 
-        public static void IndexarQuery(string query_text, Database database)
+        public static void IndexarQuery(string raw_query_text, Database database)
         {
-            Query query = new Query("query", query_text.ToLower()); //TODO: aplicar limpieza a query
+            string query_text = Scrubber.Limpiar_Contenido_Raw(raw_query_text);
+
+            Query query = new Query("query", query_text);
 
             query.Set_words_query();
 
