@@ -183,7 +183,8 @@ namespace AplicacionBusqueda
 
                 foreach (var item in this.controlador.Consult_Word(this.textBox2.Text))
                 {
-                    this.dataGridView1.Rows.Add(this.textBox2.Text, item[0], item[1], item[2], item[3], this.controlador.Obtener_Info_Extra_Termino(this.textBox2.Text));
+                    if(Int32.Parse(item[1]) != 0)
+                        this.dataGridView1.Rows.Add(this.textBox2.Text, item[0], item[1], item[2], item[3], this.controlador.Obtener_Info_Extra_Termino(this.textBox2.Text));
                 }
             }
             else
