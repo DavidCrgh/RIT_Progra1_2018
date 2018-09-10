@@ -24,6 +24,7 @@ namespace LibreriaBusqueda
             {
                 List<string> values = new List<string>();
                 values.Add(doc);
+                values.Add(indice.Get_dic_docs_word()[doc][this.name].Get_appearance().ToString());
                 values.Add(indice.Get_dic_docs_word()[doc][this.name].Get_vec().ToString());
                 values.Add(indice.Get_dic_docs_word()[doc][this.name].Get_bm25().ToString());
                 this.info.Add(values); 

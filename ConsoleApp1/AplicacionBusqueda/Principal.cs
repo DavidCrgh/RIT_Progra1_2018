@@ -171,18 +171,19 @@ namespace AplicacionBusqueda
                 this.controlador.Init_Inspector();
                 this.dataGridView1.Columns.Clear();
                 this.dataGridView1.Rows.Clear();
-                this.dataGridView1.ColumnCount = 5;
+                this.dataGridView1.ColumnCount = 6;
                 dataGridView1.ColumnHeadersVisible = true;
                 dataGridView1.ReadOnly = true;
                 dataGridView1.Columns[0].Name = "Termino";
                 dataGridView1.Columns[1].Name = "Documento";
-                dataGridView1.Columns[2].Name = "Vectorial idf";
-                dataGridView1.Columns[3].Name = "BM25 idf";
-                dataGridView1.Columns[4].Name = "Ni";
+                dataGridView1.Columns[2].Name = "Apariciones";
+                dataGridView1.Columns[3].Name = "Vectorial idf";
+                dataGridView1.Columns[4].Name = "BM25 idf";
+                dataGridView1.Columns[5].Name = "Ni";
 
                 foreach (var item in this.controlador.Consult_Word(this.textBox2.Text))
                 {
-                    this.dataGridView1.Rows.Add(this.textBox2.Text, item[0], item[1], item[2], this.controlador.Obtener_Info_Extra_Termino(this.textBox2.Text));
+                    this.dataGridView1.Rows.Add(this.textBox2.Text, item[0], item[1], item[2], item[3], this.controlador.Obtener_Info_Extra_Termino(this.textBox2.Text));
                 }
             }
             else
