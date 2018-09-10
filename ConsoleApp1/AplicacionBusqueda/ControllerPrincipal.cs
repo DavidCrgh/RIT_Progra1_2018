@@ -45,7 +45,7 @@ namespace AplicacionBusqueda
 
         public string Obtener_Info_Extra_Termino(string termino)
         {
-            return this.inspector.Obtener_Info_Extra_Termino(termino);
+            return this.inspector.Obtener_Info_Extra_Termino(Scrubber.Remove_acentos(termino));
         }
 
         public Dictionary<string,Term> Consult_Doc(string doc)
@@ -60,7 +60,7 @@ namespace AplicacionBusqueda
 
         public List<List<string>> Consult_Word(string word)
         {
-            return this.inspector.Obtener_Info_Termino(word);
+            return this.inspector.Obtener_Info_Termino(Scrubber.Remove_acentos(word));
         }
 
         public void Inicializar_Vectorial()

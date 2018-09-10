@@ -41,7 +41,7 @@ namespace LibreriaBusqueda
             return texto_limpio;
         }
 
-        private static string Remove_acentos(string text)
+        public static string Remove_acentos(string text)
         {
             var normalizedString = text.Normalize(NormalizationForm.FormD);
             var stringBuilder = new StringBuilder();
